@@ -12,5 +12,5 @@ haters = [
 , "http://s3.amazonaws.com/kym-assets/photos/images/newsfeed/000/087/536/1292102239519.gif"
 ]
 module.exports = (robot) ->
-  robot.respond /haters/i, (msg) ->
+  robot.hears /haters/i, (msg) ->
     msg.send msg.random haters
