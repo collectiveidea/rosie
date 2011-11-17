@@ -1,1 +1,1 @@
-app: bin/hubot -a campfire -n bob
+app: bin/hubot -a campfire -n Rosie
