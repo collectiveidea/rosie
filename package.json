@@ -18,6 +18,7 @@
     "hubot": "1.1.11",
     "hubot-scripts": "1.1.7",
     "optparse": "1.0.3",
-    "sprintf":"0.1.1"
+    "sprintf":"0.1.1",
+    "path":"0.4.9"
   }
 }
