@@ -16,35 +16,35 @@
 # Good news everyone! <news> - Generates Professor Farnsworth
 
 module.exports = (robot) ->
-  robot.respond /Y U NO (.+)/i, (msg) ->
+  robot.hear /Y U NO (.+)/i, (msg) ->
     caption = msg.match[1] || ""
 
     memeGenerator msg, 2, 166088, "Y U NO", caption, (url) ->
       msg.send "http://memegenerator.net/" + url
 
-  robot.respond /(I DON'?T ALWAYS .*) (BUT WHEN I DO,? .*)/i, (msg) ->
+  robot.hear /(I DON'?T ALWAYS .*) (BUT WHEN I DO,? .*)/i, (msg) ->
     memeGenerator msg, 74, 2485, msg.match[1], msg.match[2], (url) ->
-      msg.send url
+      msg.send "http://memegenerator.net/" + url
 
-  robot.respond /(.*)(O\s?RLY\??.*)/i, (msg) ->
+  robot.hear /(.*)(O\s?RLY\??.*)/i, (msg) ->
     memeGenerator msg, 920, 117049, msg.match[1], msg.match[2], (url) ->
-      msg.send url
+      msg.send "http://memegenerator.net/" + url
 
-  robot.respond /(.*)(SUCCESS|NAILED IT.*)/i, (msg) ->
+  robot.hear /(.*)(SUCCESS|NAILED IT.*)/i, (msg) ->
     memeGenerator msg, 121, 1031, msg.match[1], msg.match[2], (url) ->
-      msg.send url
+      msg.send "http://memegenerator.net/" + url
 
-  robot.respond /(.*) (ALL the .*)/i, (msg) ->
+  robot.hear /(.*) (ALL the .*)/i, (msg) ->
     memeGenerator msg, 6013, 1121885, msg.match[1], msg.match[2], (url) ->
-      msg.send url
+      msg.send "http://memegenerator.net/" + url
 
-  robot.respond /(.*) (\w+\sTOO DAMN .*)/i, (msg) ->
+  robot.hear /(.*) (\w+\sTOO DAMN .*)/i, (msg) ->
     memeGenerator msg, 998, 203665, msg.match[1], msg.match[2], (url) ->
-      msg.send url
+      msg.send "http://memegenerator.net/" + url
 
-  robot.respond /(GOOD NEWS EVERYONE[,.!]?) (.*)/i, (msg) ->
+  robot.hear /(GOOD NEWS EVERYONE[,.!]?) (.*)/i, (msg) ->
     memeGenerator msg, 1591, 112464, msg.match[1], msg.match[2], (url) ->
-      msg.send url
+      msg.send "http://memegenerator.net/" + url
 
 memeGenerator = (msg, generatorID, imageID, text0, text1, callback) ->
   username = process.env.HUBOT_MEMEGEN_USERNAME
