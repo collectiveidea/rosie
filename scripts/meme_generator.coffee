@@ -20,7 +20,7 @@ module.exports = (robot) ->
     caption = msg.match[1] || ""
 
     memeGenerator msg, 2, 166088, "Y U NO", caption, (url) ->
-      msg.send url
+      msg.send "http://memegenerator.net/" + url
 
   robot.respond /(I DON'?T ALWAYS .*) (BUT WHEN I DO,? .*)/i, (msg) ->
     memeGenerator msg, 74, 2485, msg.match[1], msg.match[2], (url) ->
