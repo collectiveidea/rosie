@@ -67,7 +67,7 @@ module.exports = (robot) ->
       msg.send url
 
   robot.hear /(ALL YOUR .*) (ARE BELONG TO US)/i, (msg) ->
-	  memeGenerator msg, 79, 2079825, msg.match[1], msg.match[2], (url) ->
+	  memeGenerator msg, 349058, 2079825, msg.match[1], msg.match[2], (url) ->
       msg.send url
 
 memeGenerator = (msg, generatorID, imageID, text0, text1, callback) ->
