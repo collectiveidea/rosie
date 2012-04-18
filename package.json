@@ -19,7 +19,7 @@
 
   "dependencies": {
     "hubot": "2.1.4",
-    "hubot-scripts": "1.1.7",
+    "hubot-scripts": "latest",
     "redis":"0.7.1",
     "optparse": "1.0.3",
     "sprintf":"0.1.1",
