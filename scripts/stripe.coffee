@@ -8,7 +8,7 @@ module.exports = (robot) ->
     data = JSON.parse req.body.payload
     payment = data.data.object
 
-    msg = "STRIPE: #{payment.name} paid $#{payment.amount} for #{req.params.account}"
+    msg = "STRIPE: #{payment.name} paid $#{payment.amount / 100.00} for #{req.params.account}"
     
     robot.messageRoom room, msg
       
