@@ -8,7 +8,7 @@ module.exports = (robot) ->
     #payment = data.data.object
 
     #msg = "STRIPE: #{payment.name} paid $#{payment.amount}"
-    msg = "TEST: #{req.body}"
+    msg = "TEST: #{req.body.payload}"
 
     robot.messageRoom room, msg
       
