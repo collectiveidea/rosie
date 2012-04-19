@@ -5,7 +5,7 @@ module.exports = (robot) ->
     room = req.params.room
     
     #data = JSON.parse req.body
-    payment = req.body.data.data
+    payment = req.body.data
     console.log payment
 
     msg = "STRIPE: #{payment.name} paid $#{payment.amount}"
