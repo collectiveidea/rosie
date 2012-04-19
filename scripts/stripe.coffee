@@ -2,7 +2,7 @@
 
 module.exports = (robot) ->
   robot.router.post '/hubot/stripe/:account/:room', (req, res) ->
-    room = req.params.room
+    room = parseInt(req.params.room)
     payment =  req.body.data.object
 
     if payment.paid == true
