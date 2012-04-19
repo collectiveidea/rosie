@@ -4,11 +4,11 @@ module.exports = (robot) ->
   robot.router.post '/hubot/stripe/:account/:room', (req, res) ->
     room = req.params.room
     
-    data = JSON.parse req.body
-    #payment = data.data.object
+    #data = JSON.parse req.body
+    payment = req.body.data.data.object
 
-    #msg = "STRIPE: #{payment.name} paid $#{payment.amount}"
-    msg = "TEST: #{data}"
+    msg = "STRIPE: #{payment.name} paid $#{payment.amount}"
+    #msg = "TEST: #{data}"
 
     robot.messageRoom room, msg
       
