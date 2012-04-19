@@ -3,14 +3,11 @@
 module.exports = (robot) ->
   robot.router.post '/hubot/stripe/:account/:room', (req, res) ->
     room = req.params.room
-    
     payment =  req.body.data.object
-    #data = JSON.parse req.body.data
 
-    msg = "STRIPE: #{payment.card.name} paid $#{payment.amount / 100.00} for #{req.params.account}"
-    #msg = "TEST: #{data}"
-
-    robot.messageRoom room, msg
+    if payment.paid == true
+      msg = "STRIPE: #{payment.card.name} paid $#{payment.amount / 100.00} for #{req.params.account}"
+      robot.messageRoom room, msg
       
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
