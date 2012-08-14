@@ -6,7 +6,8 @@ module.exports = (robot) ->
     payment =  req.body.data.object
 
     if payment.paid == true
-      msg = "STRIPE: #{payment.card.name} paid $#{payment.amount / 100.00} for #{req.params.account}"
+      action = if payment.refunded then "refunded" else "charged"
+      msg = "STRIPE: #{payment.card.name} was #{action} $#{payment.amount / 100.00} for #{req.params.account}"
       robot.messageRoom room, msg
       console.log "Sending stripe charge message to room #{req.params.room}"
 
