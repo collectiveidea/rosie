@@ -2,7 +2,8 @@
 #
 module.exports = (robot) ->
   robot.hear /do you regret/, (msg) ->
-    msg.send "http://i214.photobucket.com/albums/cc66/uchiha_sasuke_777/Gifs/chickeniregretnothing.gif#.png"
+    imageMe msg, "i regret nothing", (text) ->
+      msg.send text
 
 imageMe = (msg, query, cb) ->
   msg.http('http://ajax.googleapis.com/ajax/services/search/images')
