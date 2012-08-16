@@ -90,7 +90,7 @@ send_forecast = (msg, location, data) ->
   msg.send "#{report.title} in #{location}: #{report.fcttext} (#{formatted_ttl data})"
 
 send_radar = (msg, location, data) ->
-  msg.send "#{data.radar.image_url}#.gif"
+  msg.send "#{data.radar.image_url}#.gif?num=5&delay=50"
 
 send_satellite = (msg, location, data) ->
   msg.send "#{data.satellite.image_url}#.png"
