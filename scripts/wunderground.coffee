@@ -26,7 +26,7 @@ module.exports = (robot) ->
 
   robot.respond /radar (me|at|for|in)? ?(.*)$/i, (msg) ->
     location = msg.match[2]
-    get_data robot, msg, location, 'radar', location.replace(/\s/g, '_'), send_radar, 60*10
+    get_data robot, msg, location, 'animatedradar', location.replace(/\s/g, '_'), send_radar, 60*10
 
   robot.respond /satellite (me|at|for|in)? ?(.*)$/i, (msg) ->
     location = msg.match[2]
@@ -90,7 +90,7 @@ send_forecast = (msg, location, data) ->
   msg.send "#{report.title} in #{location}: #{report.fcttext} (#{formatted_ttl data})"
 
 send_radar = (msg, location, data) ->
-  msg.send "#{data.radar.image_url}#.png"
+  msg.send "#{data.radar.image_url}#.gif"
 
 send_satellite = (msg, location, data) ->
   msg.send "#{data.satellite.image_url}#.png"
