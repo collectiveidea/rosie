@@ -13,7 +13,7 @@ module.exports = (robot) ->
       msg.send url
 
   robot.respond /animate me (.*)/i, (msg) ->
-    imageMe msg, "animated #{msg.match[1]}", (url) ->
+    animateMe msg, msg.match[1], (url) ->
       msg.send url
 
   robot.respond /(?:mo?u)?sta(?:s|c)he?(?: me)? (.*)/i, (msg) ->
@@ -36,3 +36,11 @@ imageMe = (msg, query, cb) ->
       image  = msg.random images
       cb "#{image.unescapedUrl}#.png"
 
+animateMe = (msg, query, cb) ->
+  msg.http('http://ajax.googleapis.com/ajax/services/search/images')
+    .query(v: "1.0", rsz: '8', as_filetype: 'gif', q: query)
+    .get() (err, res, body) ->
+      images = JSON.parse(body)
+      images = images.responseData.results
+      image  = msg.random images
+      cb "#{image.unescapedUrl}#.png"
