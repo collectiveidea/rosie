@@ -14,7 +14,7 @@
 #   searls
 
 module.exports = (robot) ->
-  robot.respond /(sudo)(.*)/i, (msg) ->
+  robot.hear /(sudo)(.*)/i, (msg) ->
     if Math.random() >= 0.5
       msg.send "Alright. I'll #{msg.match?[2] || "do whatever it is you wanted."}"
 
