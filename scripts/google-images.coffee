@@ -38,7 +38,7 @@ imageMe = (msg, query, cb) ->
 
 animateMe = (msg, query, cb) ->
   msg.http('http://ajax.googleapis.com/ajax/services/search/images')
-    .query(v: "1.0", rsz: '8', as_filetype: 'gif', q: query)
+    .query(v: "1.0", rsz: '8', as_filetype: 'gif', q: "#{query} animated gif")
     .get() (err, res, body) ->
       images = JSON.parse(body)
       images = images.responseData.results
