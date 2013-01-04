@@ -16,17 +16,6 @@ module.exports = (robot) ->
     animateMe msg, msg.match[1], (url) ->
       msg.send url
 
-  robot.respond /(?:mo?u)?sta(?:s|c)he?(?: me)? (.*)/i, (msg) ->
-    imagery = msg.match[1]
-
-    if imagery.match /^https?:\/\//i
-      msg.send "#{mustachify}#{imagery}"
-    else
-      imageMe msg, imagery, (url) ->
-        msg.send "#{mustachify}#{url}"
-
-mustachify = "http://mustachify.me/?src="
-
 imageMe = (msg, query, cb) ->
   msg.http('http://ajax.googleapis.com/ajax/services/search/images')
     .query(v: "1.0", rsz: '8', q: query)
