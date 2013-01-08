@@ -22,7 +22,6 @@
   "karma.coffee",
   "location-decision-maker.coffee",
   "meme_generator.coffee",
-  "mitch-hedberg.coffee",
   "redis-brain.coffee",
   "shipit.coffee",
   "talkative.coffee",
