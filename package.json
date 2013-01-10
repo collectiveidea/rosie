@@ -18,7 +18,7 @@
   },
 
   "dependencies": {
-    "hubot": ">= 2.4.0",
+    "hubot": ">= 2.3.5",
     "hubot-scripts": "latest",
     "redis":"0.7.1",
     "optparse": "1.0.3",
