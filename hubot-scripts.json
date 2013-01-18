@@ -27,5 +27,6 @@
   "talkative.coffee",
   "tweet.coffee",
   "wunderground.coffee",
-  "buscemi.coffee"
+  "buscemi.coffee",
+  "keep-alive.coffee"
 ]
