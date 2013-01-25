@@ -1,7 +1,7 @@
 # Listen for HTTP status codes and turn them into kittens!
 #
 module.exports = (robot) ->
-  robot.hear /(?:\D|^)(\d{3})(?:\D|$)/i, (msg) ->
+  robot.hear /\b(\d{3})\b/i, (msg) ->
     status = parseInt(msg.match[1])
     if status in statuses
       msg.send "http://httpcats.herokuapp.com/#{status}.jpg"
