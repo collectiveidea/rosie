@@ -1,35 +1,32 @@
 # Description
-#   Posts Google Hangout URL for morning standup on weekdays at 9:30AM
+#   Posts Google Hangout URL for standup. (Defaults to weekdays at 9:30AM EST)
 #
 # Dependences:
 #   "cron"
 #   "time"
 #
 # Configuration:
-#   GOOGLE_HANGOUT_URL
+#   STANDUP_HANGOUT_URL
 #   STANDUP_ROOM_ID
+#   STANDUP_CRON_TIME - Defaults to M-F 9:30AM
+#   STANDUP_TIME_ZONE - Defaults to America/New_York
 #
 # Commands:
-#   /standup - Returns the standup Hangout URL
+#   hubot, standup - Returns the standup Hangout URL
+#
 # Author:
 #   ersatzryan
-
-TIMEZONE = "America/New_York"
-STANDUP_TIME = '30 9 * * 1-5' # M-F 9:29AM
 
 cronJob = require('cron').CronJob
 
 module.exports = (robot) ->
-  if process.env.GOOGLE_HANGOUT_URL
-    robot.respond /standup/i, ->
-        robot.messageRoom process.env.STANDUP_ROOM_ID, process.env.GOOGLE_HANGOUT_URL
+    robot.respond /standup$/i, ->
+      robot.messageRoom process.env.STANDUP_ROOM_ID, process.env.STANDUP_HANGOUT_URL
 
-    standup = new cronJob
-                cronTime: STANDUP_TIME
-                onTick: ->
-                  robot.messageRoom process.env.STANDUP_ROOM_ID, process.env.GOOGLE_HANGOUT_URL
-                onComplete: null
-                start: true
-                timeZone: TIMEZONE
-  else
-    robot.messageRoom process.env.STANDUP_ROOM_ID, 'Environment variable GOOGLE_HANGOUT_URL has not been set.'
+    new cronJob
+      cronTime: (process.env.STANDUP_CRON_TIME || '30 9 * * 1-5') # M-F 9:30AM
+      onTick: ->
+        robot.messageRoom process.env.STANDUP_ROOM_ID, "STANDUP: #{process.env.STANDUP_HANGOUT_URL}"
+      onComplete: null
+      start: true
+      timeZone: (process.env.STANDUP_TIME_ZONE || "America/New_York")
