@@ -13,7 +13,12 @@ images = [
   "http://assets0.ordienetworks.com/images/GifGuide/dancing/pr2.gif",
   "http://assets0.ordienetworks.com/images/GifGuide/dancing/smith4.gif",
   "http://assets0.ordienetworks.com/images/GifGuide/dancing/tumblr_lhrzztdSKy1qb7hapo1_500.gif",
-  "http://assets0.ordienetworks.com/images/GifGuide/dancing/tumblr_lj3t79ToKm1qchk28.gif"
+  "http://assets0.ordienetworks.com/images/GifGuide/dancing/tumblr_lj3t79ToKm1qchk28.gif",
+  "http://www.reactiongifs.com/wp-content/uploads/2012/12/thug-life.gif",
+  "http://www.reactiongifs.com/wp-content/uploads/2013/02/EOD.gif",
+  "http://www.reactiongifs.com/wp-content/uploads/2013/02/anigif_enhanced-buzz-31994-1359473038-6.gif",
+  "http://www.reactiongifs.com/wp-content/uploads/2012/10/romney.gif",
+  "http://www.reactiongifs.com/wp-content/uploads/2012/09/horsing_around.gif"
 ]
 
 # Now is the time on sprockets when we dance!
