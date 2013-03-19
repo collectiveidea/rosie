@@ -6,9 +6,9 @@
 # Configuration:
 #
 # Commands:
-#   hubot, hangout add <url> - Add Hangout URL to rotation (Create a G+ Event way in future with hangout)
-#   hubot, hangout rm <url> - Remove Hangout URL from rotation
-#   hubot, hangouts - List Hangouts
+#   hubot hangouts add <url> - Add Hangout URL to rotation (Create a G+ Event way in future with hangout)
+#   hubot hangouts rm <url> - Remove Hangout URL from rotation
+#   hubot hangouts - List Hangouts
 #
 # Author:
 #   ersatzryan

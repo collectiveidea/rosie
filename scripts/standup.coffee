@@ -12,7 +12,7 @@
 #   STANDUP_TIME_ZONE - Defaults to America/New_York
 #
 # Commands:
-#   hubot, standup - Returns the standup Hangout URL
+#   hubot standup - Returns the standup Hangout URL
 #
 # Author:
 #   ersatzryan
