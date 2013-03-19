@@ -1,1 +1,1 @@
-web: bin/hubot -a campfire -n Rosie -l
+web: hubot -a campfire -n Rosie -l
