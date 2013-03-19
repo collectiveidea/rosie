@@ -122,15 +122,15 @@ module.exports = (robot) ->
     robot.brain.data.memes.push meme
     memeResponder robot, meme
 
-  robot.respond /(memegen )?k(?:ha|ah)nify (.*)/i, (msg) ->
+  robot.hear /(memegen )?k(?:ha|ah)nify (.*)/i, (msg) ->
     memeGenerator msg, 6443, 1123022, "", khanify(msg.match[2]), (url) ->
       msg.send url
 
-  robot.respond /(memegen )?(IF .*), ((ARE|CAN|DO|DOES|HOW|IS|MAY|MIGHT|SHOULD|THEN|WHAT|WHEN|WHERE|WHICH|WHO|WHY|WILL|WON\'T|WOULD)[ \'N].*)/i, (msg) ->
+  robot.hear /(memegen )?(IF .*), ((ARE|CAN|DO|DOES|HOW|IS|MAY|MIGHT|SHOULD|THEN|WHAT|WHEN|WHERE|WHICH|WHO|WHY|WILL|WON\'T|WOULD)[ \'N].*)/i, (msg) ->
     memeGenerator msg, 17, 984, msg.match[2], msg.match[3] + (if msg.match[3].search(/\?$/)==(-1) then '?' else ''), (url) ->
       msg.send url
 
-  robot.respond /(memegen )?((Oh|You) .*) ((Please|Tell) .*)/i, (msg) ->
+  robot.hear /(memegen )?((Oh|You) .*) ((Please|Tell) .*)/i, (msg) ->
     memeGenerator msg, 542616, 2729805, msg.match[2], msg.match[4], (url) ->
       msg.send url
 
