@@ -135,7 +135,7 @@ module.exports = (robot) ->
       msg.send url
 
 memeResponder = (robot, meme) ->
-  robot.respond meme.regex, (msg) ->
+  robot.hear meme.regex, (msg) ->
     memeGenerator msg, meme.generatorID, meme.imageID, msg.match[2], msg.match[3], (url) ->
       msg.send url
 
