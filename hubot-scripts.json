@@ -27,7 +27,7 @@
   "location-decision-maker.coffee",
   "meme_generator.coffee",
   "ping.coffee",
-  "redis-brain.coffee",
+  "s3-brain.coffee",
   "shipit.coffee",
   "talkative.coffee",
   "tweet.coffee",
