@@ -25,7 +25,6 @@
   "karma.coffee",
   "keep-alive.coffee",
   "location-decision-maker.coffee",
-  "meme_generator.coffee",
   "pg-brain.coffee",
   "ping.coffee",
   "shipit.coffee",
