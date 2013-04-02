@@ -20,8 +20,8 @@
   },
 
   "dependencies": {
-    "hubot": ">= 2.4.5",
-    "hubot-scripts": ">= 2.4.1",
+    "hubot": ">= 2.4.8",
+    "hubot-scripts": ">= 2.4.2",
     "redis":"0.7.1",
     "optparse": "1.0.3",
     "sprintf":"0.1.1",
