@@ -18,7 +18,8 @@ images = [
   "http://www.reactiongifs.com/wp-content/uploads/2013/02/EOD.gif",
   "http://www.reactiongifs.com/wp-content/uploads/2013/02/anigif_enhanced-buzz-31994-1359473038-6.gif",
   "http://www.reactiongifs.com/wp-content/uploads/2012/10/romney.gif",
-  "http://www.reactiongifs.com/wp-content/uploads/2012/09/horsing_around.gif"
+  "http://www.reactiongifs.com/wp-content/uploads/2012/09/horsing_around.gif",
+  "http://24.media.tumblr.com/c9c393d9b69d5d60bcc3b15c0f5612bd/tumblr_mmgppxQ5BF1qdlh1io1_250.gif"
 ]
 
 # Now is the time on sprockets when we dance!
