@@ -28,6 +28,7 @@
     "path":"0.4.9",
     "cron":"1.0.1",
     "time":"0.8.4",
-    "pg": "~0.10.2"
+    "pg": "~0.10.2",
+    "ntwitter" : "https://github.com/sebhildebrandt/ntwitter/tarball/master"
   }
 }
