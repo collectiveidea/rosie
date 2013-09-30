@@ -16,23 +16,26 @@ module.exports = (robot) ->
     animateMe msg, msg.match[1], (url) ->
       msg.send url
 
-processResults = (msg, body, cb) ->
+processResults = (msg, query, body, cb, search_function) ->
   data = JSON.parse(body).responseData
   if data?
     image = msg.random data.results
     cb "#{image.unescapedUrl}#.png"
   else
-    cb "Google responded weird:"
-    cb body
+    cb "Rate limited: Trying again."
+    setTimeout(
+      () -> search_function(msg, query, cb),
+      Math.random() * 250 + 100
+    )
 
 imageMe = (msg, query, cb) ->
   msg.http('http://ajax.googleapis.com/ajax/services/search/images')
     .query(v: "1.0", rsz: '8', q: query)
     .get() (err, res, body) ->
-      processResults(msg, body, cb)
+      processResults(msg, query, body, cb, imageMe)
 
 animateMe = (msg, query, cb) ->
   msg.http('http://ajax.googleapis.com/ajax/services/search/images')
     .query(v: "1.0", rsz: '8', as_filetype: 'gif', q: "#{query} animated gif")
     .get() (err, res, body) ->
-      processResults(msg, body, cb)
+      processResults(msg, query, body, cb, animateMe)
