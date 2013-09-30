@@ -25,7 +25,7 @@ processResults = (msg, query, body, cb, search_function) ->
     cb "Rate limited: Trying again."
     setTimeout(
       () -> search_function(msg, query, cb),
-      Math.random() * 250 + 100
+      Math.random() * 1000 + 1500
     )
 
 imageMe = (msg, query, cb) ->
