@@ -16,26 +16,26 @@ module.exports = (robot) ->
     animateMe msg, msg.match[1], (url) ->
       msg.send url
 
-processResults = (msg, query, body, cb, search_function) ->
+processResults = (msg, query, body, cb, search_function, attempt) ->
   data = JSON.parse(body).responseData
   if data?
     image = msg.random data.results
     cb "#{image.unescapedUrl}#.png"
-  else
-    cb "Rate limited: Trying again."
+  else if attempt <= 5
+    cb "Rate limited: Retry #{attempt} of 5"
     setTimeout(
-      () -> search_function(msg, query, cb),
-      Math.random() * 1000 + 1500
+      () -> search_function(msg, query, cb, attempt + 1),
+      Math.random() * 2000 + 2000
     )
 
-imageMe = (msg, query, cb) ->
+imageMe = (msg, query, cb, attempt = 1) ->
   msg.http('http://ajax.googleapis.com/ajax/services/search/images')
     .query(v: "1.0", rsz: '8', q: query)
     .get() (err, res, body) ->
-      processResults(msg, query, body, cb, imageMe)
+      processResults(msg, query, body, cb, imageMe, attempt)
 
-animateMe = (msg, query, cb) ->
+animateMe = (msg, query, cb, attempt = 1) ->
   msg.http('http://ajax.googleapis.com/ajax/services/search/images')
     .query(v: "1.0", rsz: '8', as_filetype: 'gif', q: "#{query} animated gif")
     .get() (err, res, body) ->
-      processResults(msg, query, body, cb, animateMe)
+      processResults(msg, query, body, cb, animateMe, attempt)
