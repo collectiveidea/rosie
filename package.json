@@ -29,6 +29,7 @@
     "cron":"1.0.1",
     "time":"0.8.4",
     "pg": "~0.10.2",
-    "ntwitter" : "https://github.com/sebhildebrandt/ntwitter/tarball/master"
+    "ntwitter" : "https://github.com/sebhildebrandt/ntwitter/tarball/master",
+    "nesting": "0.1.0"
   }
 }
