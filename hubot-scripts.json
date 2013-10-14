@@ -27,7 +27,6 @@
   "location-decision-maker.coffee",
   "pg-brain.coffee",
   "ping.coffee",
-  "shipit.coffee",
   "talkative.coffee",
   "tweet.coffee",
   "wunderground.coffee",
