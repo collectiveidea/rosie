@@ -21,11 +21,12 @@ processResults = (msg, query, body, cb, search_function, attempt) ->
   if data?
     image = msg.random data.results
     cb "#{image.unescapedUrl}#.png"
+  else if attempt == 5
+    cb "I failed to get an image due to rate limiting."
   else if attempt <= 5
-    cb "Rate limited: Retry #{attempt} of 5"
     setTimeout(
       () -> search_function(msg, query, cb, attempt + 1),
-      Math.random() * 2000 + 2000
+      (attempt * 1000 + (Math.random() * 1000)) + 2000
     )
 
 imageMe = (msg, query, cb, attempt = 1) ->
