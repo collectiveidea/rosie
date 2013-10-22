@@ -12,7 +12,7 @@ module.exports = (robot) ->
     imageMe msg, msg.match[3], (url) ->
       msg.send url
 
-  robot.respond /animate me (.*)/i, (msg) ->
+  robot.respond /animate( me)? (.*)/i, (msg) ->
     animateMe msg, msg.match[1], (url) ->
       msg.send url
 
@@ -37,6 +37,6 @@ imageMe = (msg, query, cb, attempt = 1) ->
 
 animateMe = (msg, query, cb, attempt = 1) ->
   msg.http('http://ajax.googleapis.com/ajax/services/search/images')
-    .query(v: "1.0", rsz: '8', as_filetype: 'gif', q: "#{query} animated gif")
+    .query(v: "1.0", rsz: "8", imgtype: "animated", q: query)
     .get() (err, res, body) ->
       processResults(msg, query, body, cb, animateMe, attempt)
