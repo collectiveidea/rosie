@@ -17,9 +17,10 @@ module.exports = (robot) ->
       msg.send url
 
 processResults = (msg, query, body, cb, search_function, attempt) ->
-  data = JSON.parse(body).responseData
-  if data?
-    image = msg.random data.results
+  images = JSON.parse(body).responseData?.results
+
+  if images?.length > 0
+    image = msg.random images
     cb "#{image.unescapedUrl}#.png"
   else if attempt == 5
     cb "I failed to get an image due to rate limiting."
