@@ -13,7 +13,7 @@ module.exports = (robot) ->
       msg.send url
 
   robot.respond /animate( me)? (.*)/i, (msg) ->
-    animateMe msg, msg.match[1], (url) ->
+    animateMe msg, msg.match[2], (url) ->
       msg.send url
 
 processResults = (msg, query, body, cb, search_function, attempt) ->
