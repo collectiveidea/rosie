@@ -20,14 +20,17 @@
 cronJob = require("cron").CronJob
 
 module.exports = (robot) ->
-  robot.respond /hours$/i, (msg) ->
-    msg.http("http://#{process.env.HOURGLASS_USERNAME}:#{process.env.HOURGLASS_PASSWORD}@hourglass.collectiveidea.com/projects.txt").get() (err, res, body) ->
-      robot.adapter.bot.Room(process.env.HOURGLASS_ROOM_ID).paste(body)
+  robot.respond /hours$/i, postHours
 
   new cronJob
     cronTime: (process.env.HOURGLASS_CRON_TIME || "25 9 * * 1-5") # M-F 9:25AM
-    onTick: ->
-      robot.adapter.bot.Room(process.env.HOURGLASS_ROOM_ID).paste("Hello, world!")
+    onTick: -> postHours(robot)
     onComplete: null
     start: true
     timeZone: (process.env.HOURGLASS_TIME_ZONE || "America/New_York")
+
+url = "http://#{process.env.HOURGLASS_USERNAME}:#{process.env.HOURGLASS_PASSWORD}@hourglass.collectiveidea.com/projects.txt"
+
+postHours = (robot) ->
+  robot.http(url).get() (err, res, body) ->
+    robot.adapter.bot.Room(process.env.HOURGLASS_ROOM_ID).paste(body)
