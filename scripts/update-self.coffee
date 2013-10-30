@@ -2,15 +2,12 @@
 #
 module.exports = (robot) ->
   robot.respond /update self/, (msg) ->
-    sys = require('sys')
     exec = require('child_process').exec
-    puts = (error, stdout, stderr) ->
+    exec "/usr/bin/git pull", (error, stdout, stderr) ->
+      msg.send('stdout: ' + stdout)
+      msg.send('stderr: ' + stderr)
       if error?
-        msg.send(error)
-      if stdout?
-        msg.send(stdout)
-      if stderr
-        msg.send(stderr)
-    exec("git pull", puts)
+        msg.send('exec error: ' + error)
+
     robot.shutdown()
     process.exit()
