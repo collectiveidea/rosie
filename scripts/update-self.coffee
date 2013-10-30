@@ -11,5 +11,7 @@ module.exports = (robot) ->
       if error?
         msg.send('exec error: ' + error)
 
-      robot.shutdown()
-      process.exit()
+      setTimeout (->
+        robot.shutdown()
+        process.exit()
+      ), 2000
