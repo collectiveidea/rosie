@@ -20,7 +20,7 @@
 cronJob = require("cron").CronJob
 
 module.exports = (robot) ->
-  robot.respond /hours$/i, postHours
+  robot.respond /hours$/i, -> postHours(robot)
 
   new cronJob
     cronTime: (process.env.HOURGLASS_CRON_TIME || "25 9 * * 1-5") # M-F 9:25AM
