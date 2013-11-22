@@ -29,6 +29,7 @@
   "ping.coffee",
   "talkative.coffee",
   "tweet.coffee",
-  "wunderground.coffee",
-  "wat.coffee"
+  "urban.coffee",
+  "wat.coffee",
+  "wunderground.coffee"
 ]
