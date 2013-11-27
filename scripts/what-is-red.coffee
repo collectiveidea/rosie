@@ -17,7 +17,7 @@
 cronJob = require("cron").CronJob
 
 module.exports = (robot) ->
-  robot.respond /what projects are red$/i, -> postWhatIsRed(robot)
+  robot.respond /^(what projects are red|red|borked|blame)$/i, -> postWhatIsRed(robot)
 
   new cronJob
     cronTime: "20 9 * * 1-5" # M-F 9:20AM
