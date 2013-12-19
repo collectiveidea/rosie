@@ -41,21 +41,21 @@ changeTemperatureTo = (toF, msg) ->
 
 
 module.exports = (robot) ->
-  robot.hear /how (warm|cold|hot) is it\??/i, (msg) ->
-    nest.login options.login, options.password, (data) ->
-      nest.fetchStatus (data) ->
-        current_temp = data.shared[options.nest_id].current_temperature
-        msg.send "The temperature is currently " + nest.ctof(current_temp) + "ºF."
-
-  robot.hear /it'?s(.*)( really)? (hot|warm)|nest (down|cooler|colder)/i, (msg) ->
-    msg.send("Decreasing the temperature...")
-    nest.login options.login, options.password, (data) ->
-      changeTemperatureBy -1, msg
-
-  robot.hear /it'?s(.*) cold|nest (up|warmer)/i, (msg) ->
-    msg.send("Increasing the temperature...")
-    nest.login options.login, options.password, (data) ->
-      changeTemperatureBy +1, msg
+  #robot.hear /how (warm|cold|hot) is it\??/i, (msg) ->
+    #nest.login options.login, options.password, (data) ->
+      #nest.fetchStatus (data) ->
+        #current_temp = data.shared[options.nest_id].current_temperature
+        #msg.send "The temperature is currently " + nest.ctof(current_temp) + "ºF."
+#
+  #robot.hear /it'?s(.*)( really)? (hot|warm)|nest (down|cooler|colder)/i, (msg) ->
+    #msg.send("Decreasing the temperature...")
+    #nest.login options.login, options.password, (data) ->
+      #changeTemperatureBy -1, msg
+#
+  #robot.hear /it'?s(.*) cold|nest (up|warmer)/i, (msg) ->
+    #msg.send("Increasing the temperature...")
+    #nest.login options.login, options.password, (data) ->
+      #changeTemperatureBy +1, msg
 
   robot.respond /(nest|n) set (\d{2}).*/i, (msg) ->
     nest.login options.login, options.password, (data) ->
