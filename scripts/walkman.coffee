@@ -35,8 +35,12 @@ module.exports = (robot) ->
     apiRequest message, '/stop', 'post', {}, (err, res, body) ->
       message.send("Stopping the beats.")
 
-  robot.hear /next (song|tune)/i, (message) ->
+  robot.hear /(skip|next) (song|tune)/i, (message) ->
     apiRequest message, '/next', 'post', {}, (err, res, body) ->
+      message.send(body)
+  robot.hear /skip (.*) songs/i, (message) ->
+    params = { count: message.match[1] }
+    apiRequest message, '/next', 'post', params, (err, res, body) ->
       message.send(body)
 
   robot.hear /what'?s playing/i, (message) ->
@@ -52,8 +56,8 @@ module.exports = (robot) ->
       message.send(body)
 
   robot.hear /play artist (.*)/i, (message) ->
-    if message.match[1].search(/radio/) != -1 ||
-       message.match[1].search(/music/) != -1
+    if message.match[1].search(/\bradio\b/) != -1 ||
+       message.match[1].search(/\bmusic\b/) != -1
       return
 
     params = { artist: message.match[1] }
