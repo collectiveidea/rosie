@@ -10,7 +10,7 @@
 #   play artist <artist> - Plays songs from the given artist.
 #   play artist radio <artist> - Plays music similar to the given artist.
 
-URL = "http://music.collectiveidea.com"
+URL = process.env.MUSIC_URL # "http://music.collectiveidea.com"
 
 apiRequest = (message, path, action, options, callback) ->
   message.http("#{URL}#{path}")
@@ -51,7 +51,7 @@ module.exports = (robot) ->
     apiRequest message, '/up-next', 'get', {}, (err, res, body) ->
       message.send(body)
 
-  robot.hear /I (like|star|love|dig) this( song)?/i, (message) ->
+  robot.hear /(like|love|dig)( this)? song/i, (message) ->
     apiRequest message, '/like', 'post', {}, (err, res, body) ->
       message.send(body)
 
