@@ -9,8 +9,10 @@
 #   I like this song - Tells Walkman to play more songs like the current song.
 #   play artist <artist> - Plays songs from the given artist.
 #   play artist radio <artist> - Plays music similar to the given artist.
+#   walkman status - Displays the current Walkman URL
 
-URL = process.env.MUSIC_URL # "http://music.collectiveidea.com"
+# URL = process.env.MUSIC_URL # "http://music.collectiveidea.com"
+URL = "http://localhost:9292"
 
 apiRequest = (message, path, action, options, callback) ->
   message.http("#{URL}#{path}")
@@ -19,6 +21,9 @@ apiRequest = (message, path, action, options, callback) ->
       callback(err,res,body)
 
 module.exports = (robot) ->
+  robot.hear /walkman status/i, (message) ->
+    message.send("Walkman is pointed to #{URL}")
+
   robot.hear /walkman start/i, (message) ->
     apiRequest message, '/startup', 'post', {}, (err, res, body) ->
       message.send(body)
