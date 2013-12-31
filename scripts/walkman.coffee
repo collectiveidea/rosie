@@ -29,7 +29,7 @@ module.exports = (robot) ->
       # we started playing, now let's get the current song
       apiRequest message, "/now-playing", "get", {}, (err, res, body) ->
         if song = JSON.parse(body)
-          message.send("♫ Playing #{song.title} by #{song.artist}")
+          message.send("♫ #{song.title} by #{song.artist}")
         else
           message.send("♯ No music is queued")
 
@@ -41,7 +41,7 @@ module.exports = (robot) ->
     apiRequest message, "/skip", "post", {}, (err, res, body) ->
       song = JSON.parse(body)
       if song != null
-        message.send("♫ Skipping to #{song.title} by #{song.artist}")
+        message.send("♫ #{song.title} by #{song.artist}")
       else
         message.send("♯ No more music is queued")
 
@@ -50,7 +50,7 @@ module.exports = (robot) ->
     apiRequest message, "/skip", "post", params, (err, res, body) ->
       song = JSON.parse(body)
       if song != null
-        message.send("♫ Skipping to #{song.title} by #{song.artist}")
+        message.send("♫ #{song.title} by #{song.artist}")
       else
         message.send("♯ No more music is queued")
 
@@ -58,7 +58,7 @@ module.exports = (robot) ->
     apiRequest message, "/now-playing", "get", {}, (err, res, body) ->
       song = JSON.parse(body)
       if song != null
-        message.send("♫ Playing #{song.title} by #{song.artist}")
+        message.send("♫ #{song.title} by #{song.artist}")
       else
         message.send("♯ No music is playing")
 
@@ -68,7 +68,7 @@ module.exports = (robot) ->
       if songs != null
         response = songs.map (song) ->
           "#{song.artist} - #{song.title}"
-        message.send("♯ Up next:\n#{response.join("\n")}")
+        message.send(response.join("\n"))
       else
         message.send("♯ No more music is queued")
 
@@ -97,7 +97,7 @@ module.exports = (robot) ->
     apiRequest message, "/queue", "post", params, (err, res, body) ->
       song = JSON.parse(body)
       if song != null
-        message.send("♫ Playing #{song.title} by #{song.artist}")
+        message.send("♫ #{song.title} by #{song.artist}")
       else
         message.send("♯ I couldn't queue up any songs for that artist")
 
@@ -106,6 +106,6 @@ module.exports = (robot) ->
     apiRequest message, "/queue", "post", params, (err, res, body) ->
       song = JSON.parse(body)
       if song != null
-        message.send("♫ Playing #{song.title} by #{song.artist}")
+        message.send("♫ #{song.title} by #{song.artist}")
       else
         message.send("♯ I couldn't queue up any music like that artist")
