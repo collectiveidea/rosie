@@ -25,6 +25,8 @@ module.exports = (robot) ->
     message.send("Walkman is pointed to #{URL}")
 
   robot.respond /play/i, (message) ->
+    return if message.match[1].search(/\bartist\b/) != -1
+
     apiRequest message, "/play", "post", {}, (err, res, body) ->
       # we started playing, now let's get the current song
       apiRequest message, "/now-playing", "get", {}, (err, res, body) ->
@@ -89,10 +91,6 @@ module.exports = (robot) ->
         message.send("♯ #{response["message"]}")
 
   robot.respond /play artist (.*)/i, (message) ->
-    if message.match[1].search(/\bradio\b/) != -1 ||
-       message.match[1].search(/\bmusic\b/) != -1
-      return
-
     params = { type: "artist", artist: message.match[1] }
     apiRequest message, "/queue", "post", params, (err, res, body) ->
       song = JSON.parse(body)
