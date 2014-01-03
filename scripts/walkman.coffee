@@ -78,7 +78,7 @@ module.exports = (robot) ->
     apiRequest message, "/like", "post", {}, (err, res, body) ->
       response = JSON.parse(body)
       if res.statusCode == 200
-        message.send("✓ Awesome! I'll play more music like #{song.title} by #{song.artist}")
+        message.send("✓ Awesome! I'll play more music like #{response.title} by #{response.artist}")
       else
         message.send("♯ #{response["message"]}")
 
@@ -86,7 +86,7 @@ module.exports = (robot) ->
     apiRequest message, "/ban", "post", {}, (err, res, body) ->
       response = JSON.parse(body)
       if res.statusCode == 200
-        message.send("✗ Bummer. I won't play #{song.title} by #{song.artist} again")
+        message.send("✗ Bummer. I won't play #{response.title} by #{response.artist} again")
       else
         message.send("♯ #{response["message"]}")
 
