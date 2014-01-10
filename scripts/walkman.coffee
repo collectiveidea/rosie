@@ -94,6 +94,8 @@ module.exports = (robot) ->
       songs = JSON.parse(body)["songs"]
       if songs.length > 0
         message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
+      else if res.statusCode == 200
+        message.send(":notes: I don't know those beats. Queueing from The Cloud!")
       else
         message.send(":speak_no_evil: I couldn't queue up any songs for that artist")
 
@@ -103,6 +105,8 @@ module.exports = (robot) ->
       songs = JSON.parse(body)["songs"]
       if songs.length > 0
         message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
+      else if res.statusCode == 200
+        message.send(":notes: I don't know those beats. Queueing from The Cloud!")
       else
         message.send(":speak_no_evil: I couldn't queue up any music like that artist")
 
