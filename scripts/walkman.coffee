@@ -12,7 +12,7 @@
 #   /music output <output> - Directs audio to the given output as named in System Preferences
 
 # URL = process.env.MUSIC_URL # "http://music.collectiveidea.com"
-URL = "http://localhost:3000/api/player"
+URL = "http://localhost:3000/api"
 
 apiRequest = (message, path, action, options, callback) ->
   message.http("#{URL}#{path}")
@@ -24,49 +24,48 @@ module.exports = (robot) ->
   robot.respond /music status/i, (message) ->
     message.send(":information_source: Walkman is pointed to #{URL}")
 
-  robot.respond /music play (.*)/i, (message) ->
-    if message.match[1].search(/artist/) != -1
-      return
-
-    apiRequest message, "/play", "post", {}, (err, res, body) ->
-      if song = JSON.parse(body)
-        message.send(":musical_note: #{song.title} by #{song.artist}")
+  robot.respond /music play$/i, (message) ->
+    apiRequest message, "/player/play", "post", {}, (err, res, body) ->
+      songs = JSON.parse(body)["songs"]
+      if songs.length > 0
+        message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
       else
         message.send(":speak_no_evil: No music is queued")
 
   robot.respond /music stop/i, (message) ->
-    apiRequest message, "/stop", "post", {}, (err, res, body) ->
+    apiRequest message, "/player/stop", "post", {}, (err, res, body) ->
       message.send(":mute: Stopping the beats")
 
   robot.respond /music (next|skip)/i, (message) ->
-    apiRequest message, "/next", "post", {}, (err, res, body) ->
-      song = JSON.parse(body)
-      if song != null
-        message.send(":musical_note: #{song.title} by #{song.artist}")
+    params = { count: 1 }
+    apiRequest message, "/player/next", "post", params, (err, res, body) ->
+      songs = JSON.parse(body)["songs"]
+      if songs.length > 0
+        message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
       else
         message.send(":speak_no_evil: No more music is queued")
 
   robot.respond /music skip (\d+)/i, (message) ->
     params = { count: message.match[1] }
-    apiRequest message, "/next", "post", params, (err, res, body) ->
-      song = JSON.parse(body)
-      if song != null
-        message.send(":musical_note: #{song.title} by #{song.artist}")
+    apiRequest message, "/player/next", "post", params, (err, res, body) ->
+      songs = JSON.parse(body)["songs"]
+      if songs.length > 0
+        message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
       else
         message.send(":speak_no_evil: No more music is queued")
 
   robot.respond /music current/i, (message) ->
-    apiRequest message, "/now-playing", "get", {}, (err, res, body) ->
-      song = JSON.parse(body)
-      if song != null
-        message.send(":musical_note: #{song.title} by #{song.artist}")
+    apiRequest message, "/player/current_song", "get", {}, (err, res, body) ->
+      songs = JSON.parse(body)["songs"]
+      if songs.length > 0
+        message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
       else
         message.send(":speak_no_evil: No music is playing")
 
   robot.respond /music queue/i, (message) ->
-    apiRequest message, "/up-next", "get", {}, (err, res, body) ->
-      songs = JSON.parse(body)
-      if songs != null
+    apiRequest message, "/queue", "get", {}, (err, res, body) ->
+      songs = JSON.parse(body)["songs"]
+      if songs.length > 0
         response = songs.map (song) ->
           "#{song.artist} - #{song.title}"
         message.send(response.join("\n"))
@@ -74,44 +73,44 @@ module.exports = (robot) ->
         message.send(":speak_no_evil: No more music is queued")
 
   robot.respond /music like/i, (message) ->
-    apiRequest message, "/like", "post", {}, (err, res, body) ->
-      response = JSON.parse(body)
-      if res.statusCode == 200
-        message.send(":star: Awesome! I'll play more music like #{response.title} by #{response.artist}")
+    apiRequest message, "/songs/like", "post", {}, (err, res, body) ->
+      songs = JSON.parse(body)["songs"]
+      if songs.length > 0
+        message.send(":star: Awesome! I'll play more music like #{songs[0].title} by #{songs[0].artist}")
       else
-        message.send(":warning: #{response["message"]}")
+        message.send(":warning: I couldn't like this song")
 
   robot.respond /music ban/i, (message) ->
-    apiRequest message, "/ban", "post", {}, (err, res, body) ->
-      response = JSON.parse(body)
-      if res.statusCode == 200
-        message.send(":boom: Bummer. I won't play #{response.title} by #{response.artist} again")
+    apiRequest message, "/songs/ban", "post", {}, (err, res, body) ->
+      songs = JSON.parse(body)["songs"]
+      if songs.length > 0
+        message.send(":boom: Bummer. I won't play #{songs[0].title} by #{songs[0].artist} again")
       else
-        message.send(":warning: #{response["message"]}")
+        message.send(":warning: I couldn't ban this song")
 
   robot.respond /music play artist (.*)/i, (message) ->
     params = { type: "artist", artist: message.match[1] }
     apiRequest message, "/queue", "post", params, (err, res, body) ->
-      song = JSON.parse(body)
-      if song != null
-        message.send(":musical_note: #{song.title} by #{song.artist}")
+      songs = JSON.parse(body)["songs"]
+      if songs.length > 0
+        message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
       else
         message.send(":speak_no_evil: I couldn't queue up any songs for that artist")
 
   robot.respond /music radio artist (.*)/i, (message) ->
     params = { type: "artist-radio", artist: message.match[1] }
     apiRequest message, "/queue", "post", params, (err, res, body) ->
-      song = JSON.parse(body)
-      if song != null
-        message.send(":musical_note: #{song.title} by #{song.artist}")
+      songs = JSON.parse(body)["songs"]
+      if songs.length > 0
+        message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
       else
         message.send(":speak_no_evil: I couldn't queue up any music like that artist")
 
   robot.respond /music output (.*)/i, (message) ->
     params = { audio_output: message.match[1] }
-    apiRequest message, "/audio-output", "post", params, (err, res, body) ->
+    apiRequest message, "/player/audio_output", "post", params, (err, res, body) ->
       response = JSON.parse(body)
       if res.statusCode == 200
-        message.send(":speaker: #{response["message"]}")
+        message.send(":speaker: Audio output changed to #{params["audio_output"]}")
       else
-        message.send(":warning: #{response["message"]}")
+        message.send(":warning: #{response["error"]}")
