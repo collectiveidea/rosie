@@ -22,7 +22,7 @@ apiRequest = (message, path, action, options, callback) ->
 
 module.exports = (robot) ->
   robot.respond /music status/i, (message) ->
-    message.send(":small_blue_diamond: Walkman is pointed to #{URL}")
+    message.send(":information_source: Walkman is pointed to #{URL}")
 
   robot.respond /music play (.*)/i, (message) ->
     if message.match[1].search(/artist/) != -1
@@ -32,11 +32,11 @@ module.exports = (robot) ->
       if song = JSON.parse(body)
         message.send(":musical_note: #{song.title} by #{song.artist}")
       else
-        message.send(":small_orange_diamond: No music is queued")
+        message.send(":speak_no_evil: No music is queued")
 
   robot.respond /music stop/i, (message) ->
     apiRequest message, "/stop", "post", {}, (err, res, body) ->
-      message.send(":small_blue_diamond: Stopping the beats")
+      message.send(":mute: Stopping the beats")
 
   robot.respond /music (next|skip)/i, (message) ->
     apiRequest message, "/next", "post", {}, (err, res, body) ->
@@ -44,7 +44,7 @@ module.exports = (robot) ->
       if song != null
         message.send(":musical_note: #{song.title} by #{song.artist}")
       else
-        message.send(":small_orange_diamond: No more music is queued")
+        message.send(":speak_no_evil: No more music is queued")
 
   robot.respond /music skip (\d+)/i, (message) ->
     params = { count: message.match[1] }
@@ -53,7 +53,7 @@ module.exports = (robot) ->
       if song != null
         message.send(":musical_note: #{song.title} by #{song.artist}")
       else
-        message.send(":small_orange_diamond: No more music is queued")
+        message.send(":speak_no_evil: No more music is queued")
 
   robot.respond /music current/i, (message) ->
     apiRequest message, "/now-playing", "get", {}, (err, res, body) ->
@@ -61,7 +61,7 @@ module.exports = (robot) ->
       if song != null
         message.send(":musical_note: #{song.title} by #{song.artist}")
       else
-        message.send(":small_orange_diamond: No music is playing")
+        message.send(":speak_no_evil: No music is playing")
 
   robot.respond /music queue/i, (message) ->
     apiRequest message, "/up-next", "get", {}, (err, res, body) ->
@@ -71,7 +71,7 @@ module.exports = (robot) ->
           "#{song.artist} - #{song.title}"
         message.send(response.join("\n"))
       else
-        message.send(":small_orange_diamond: No more music is queued")
+        message.send(":speak_no_evil: No more music is queued")
 
   robot.respond /music like/i, (message) ->
     apiRequest message, "/like", "post", {}, (err, res, body) ->
@@ -79,7 +79,7 @@ module.exports = (robot) ->
       if res.statusCode == 200
         message.send(":star: Awesome! I'll play more music like #{response.title} by #{response.artist}")
       else
-        message.send(":small_red_triangle: #{response["message"]}")
+        message.send(":warning: #{response["message"]}")
 
   robot.respond /music ban/i, (message) ->
     apiRequest message, "/ban", "post", {}, (err, res, body) ->
@@ -87,7 +87,7 @@ module.exports = (robot) ->
       if res.statusCode == 200
         message.send(":boom: Bummer. I won't play #{response.title} by #{response.artist} again")
       else
-        message.send(":small_red_triangle: #{response["message"]}")
+        message.send(":warning: #{response["message"]}")
 
   robot.respond /music play artist (.*)/i, (message) ->
     params = { type: "artist", artist: message.match[1] }
@@ -96,7 +96,7 @@ module.exports = (robot) ->
       if song != null
         message.send(":musical_note: #{song.title} by #{song.artist}")
       else
-        message.send(":small_orange_diamond: I couldn't queue up any songs for that artist")
+        message.send(":speak_no_evil: I couldn't queue up any songs for that artist")
 
   robot.respond /music radio artist (.*)/i, (message) ->
     params = { type: "artist-radio", artist: message.match[1] }
@@ -105,7 +105,7 @@ module.exports = (robot) ->
       if song != null
         message.send(":musical_note: #{song.title} by #{song.artist}")
       else
-        message.send(":small_orange_diamond: I couldn't queue up any music like that artist")
+        message.send(":speak_no_evil: I couldn't queue up any music like that artist")
 
   robot.respond /music output (.*)/i, (message) ->
     params = { audio_output: message.match[1] }
@@ -114,4 +114,4 @@ module.exports = (robot) ->
       if res.statusCode == 200
         message.send(":speaker: #{response["message"]}")
       else
-        message.send(":boom: #{response["message"]}")
+        message.send(":warning: #{response["message"]}")
