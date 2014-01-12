@@ -7,6 +7,7 @@
 #   /music queue - Returns next 5 songs in the queue
 #   /music like - Tells Walkman to play more songs like the current song
 #   /music ban - Tells Walkman to never play this song again
+#   /music play <song> by <artist> - Plays given song and starts a song radio station
 #   /music play artist <artist> - Plays songs from the given artist
 #   /music radio artist <artist> - Plays music similar to the given artist
 #   /music output <output> - Directs audio to the given output as named in System Preferences
