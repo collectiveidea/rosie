@@ -99,6 +99,17 @@ module.exports = (robot) ->
       else
         message.send(":speak_no_evil: I couldn't queue up any songs for that artist")
 
+  robot.respond /music play (.*) by (.*)/i, (message) ->
+    return if message.match[1].search(/artist/) != -1
+
+    params = { type: "song-radio", title: message.match[1], artist: message.match[2] }
+    apiRequest message, "/queue", "post", params, (err, res, body) ->
+      songs = JSON.parse(body)["songs"]
+      if songs.length > 0
+        message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
+      else
+        message.send(":speak_no_evil: I couldn't queue up that song")
+
   robot.respond /music radio artist (.*)/i, (message) ->
     params = { type: "artist-radio", artist: message.match[1] }
     apiRequest message, "/queue", "post", params, (err, res, body) ->
