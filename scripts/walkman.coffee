@@ -12,8 +12,7 @@
 #   /music radio artist <artist> - Plays music similar to the given artist
 #   /music output <output> - Directs audio to the given output as named in System Preferences
 
-# URL = process.env.MUSIC_URL # "http://music.collectiveidea.com"
-URL = "http://localhost:3000/api"
+URL = process.env.MUSIC_API_URL # "http://music.collectiveidea.com"
 
 apiRequest = (message, path, action, options, callback) ->
   message.http("#{URL}#{path}")
@@ -22,6 +21,20 @@ apiRequest = (message, path, action, options, callback) ->
       callback(err,res,body)
 
 module.exports = (robot) ->
+  robot.router.post "/music", (req, res) ->
+    if req.body.api_key == process.env.MUSIC_API_KEY
+      song = req.body.song
+      if song
+        robot.messageRoom process.env.KEGBOT_ROOM_ID, ":musical_note: #{song.title} by #{song.artist}"
+      else
+        robot.messageRoom process.env.KEGBOT_ROOM_ID, ":speak_no_evil: No song could be played"
+
+      res.writeHead 204, { "Content-Length": 0 }
+    else
+      res.writeHead 404, { "Content-Length": 0 }
+
+    res.end()
+
   robot.respond /music status/i, (message) ->
     message.send(":information_source: Walkman is pointed to #{URL}")
 
