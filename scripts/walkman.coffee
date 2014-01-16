@@ -25,7 +25,10 @@ module.exports = (robot) ->
     if req.body.api_key == process.env.MUSIC_API_KEY
       song = req.body.song
       if song
-        robot.messageRoom process.env.KEGBOT_ROOM_ID, ":musical_note: #{song.title} by #{song.artist}"
+        if req.body.room_id
+          robot.messageRoom req.body.room_id, ":musical_note: #{song.title} by #{song.artist}"
+        else
+          robot.messageRoom process.env.KEGBOT_ROOM_ID, ":musical_note: #{song.title} by #{song.artist}"
       else
         robot.messageRoom process.env.KEGBOT_ROOM_ID, ":speak_no_evil: No song could be played"
 
@@ -103,7 +106,7 @@ module.exports = (robot) ->
         message.send(":warning: I couldn't ban this song")
 
   robot.respond /music play artist (.*)/i, (message) ->
-    params = { type: "artist", artist: message.match[1] }
+    params = { type: "artist", artist: message.match[1], room_id: message.message.room }
     apiRequest message, "/queue", "post", params, (err, res, body) ->
       songs = JSON.parse(body)["songs"]
       if songs.length > 0
@@ -125,7 +128,7 @@ module.exports = (robot) ->
         message.send(":speak_no_evil: I couldn't queue up that song")
 
   robot.respond /music radio artist (.*)/i, (message) ->
-    params = { type: "artist-radio", artist: message.match[1] }
+    params = { type: "artist-radio", artist: message.match[1], room_id: message.message.room }
     apiRequest message, "/queue", "post", params, (err, res, body) ->
       songs = JSON.parse(body)["songs"]
       if songs.length > 0
