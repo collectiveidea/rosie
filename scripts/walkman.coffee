@@ -22,15 +22,12 @@ apiRequest = (message, path, action, options, callback) ->
 
 module.exports = (robot) ->
   robot.router.post "/music", (req, res) ->
-    if req.body.api_key == process.env.MUSIC_API_KEY
+    if req.body.api_key == process.env.MUSIC_AUTH_TOKEN
       song = req.body.song
       if song
-        if req.body.room_id
-          robot.messageRoom req.body.room_id, ":musical_note: #{song.title} by #{song.artist}"
-        else
-          robot.messageRoom process.env.KEGBOT_ROOM_ID, ":musical_note: #{song.title} by #{song.artist}"
+        robot.messageRoom req.body.room_id || process.env.KEGBOT_ROOM_ID, ":musical_note: #{song.title} by #{song.artist}"
       else
-        robot.messageRoom process.env.KEGBOT_ROOM_ID, ":speak_no_evil: No song could be played"
+        robot.messageRoom req.body.room_id || process.env.KEGBOT_ROOM_ID, ":speak_no_evil: No song could be played"
 
       res.writeHead 204, { "Content-Length": 0 }
     else
