@@ -12,13 +12,17 @@
 #   /music radio artist <artist> - Plays music similar to the given artist
 #   /music output <output> - Directs audio to the given output as named in System Preferences
 
-URL = process.env.MUSIC_API_URL # "http://music.collectiveidea.com"
+URL = process.env.MUSIC_API_URL # "http://music.collectiveidea.com/api"
 
 apiRequest = (message, path, action, options, callback) ->
   message.http("#{URL}#{path}")
+    .query(github_login: message.message.user.githubLogin, auth_token: process.env.MUSIC_AUTH_TOKEN)
     .header("Content-Length", 0)
     .query(options)[action]() (err, res, body) ->
-      callback(err,res,body)
+      if res.statusCode == 401
+        message.send(":cop: To control music, you must have an account at http://music.collectiveidea.com:3000 and identify yourself with hubot using /i am <github username>")
+      else
+        callback(err,res,body)
 
 module.exports = (robot) ->
   robot.router.post "/music", (req, res) ->
