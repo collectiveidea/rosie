@@ -55,7 +55,7 @@ module.exports = (robot) ->
     apiRequest message, "/player/stop", "post", {}, (err, res, body) ->
       message.send(":mute: Stopping the beats")
 
-  robot.respond /music (next|skip)/i, (message) ->
+  robot.respond /music (next|skip)$/i, (message) ->
     params = { count: 1 }
     apiRequest message, "/player/next", "post", params, (err, res, body) ->
       songs = JSON.parse(body)["songs"]
