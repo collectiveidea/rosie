@@ -12,8 +12,7 @@
 #   /music radio artist <artist> - Plays music similar to the given artist
 #   /music output <output> - Directs audio to the given output as named in System Preferences
 
-# URL = process.env.MUSIC_API_URL # "http://music.collectiveidea.com/api"
-URL = "http://172.19.44.117:3000/api"
+URL = process.env.MUSIC_API_URL # "http://music.collectiveidea.com/api"
 
 apiRequest = (message, path, action, options, callback) ->
   message.http("#{URL}#{path}")
