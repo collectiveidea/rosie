@@ -9,7 +9,7 @@ module.exports = (robot) ->
     else
       msg.send "Too soon."
 
-  robot.hear /\b(money|vices|smoking|pay day|suit|vp)\b/i, (msg) ->
+  robot.hear /\b(vices|smoking|pay day|suit|vp)\b/i, (msg) ->
     t = new Date
     if !robot.brain.data.money_timer? || (t - 300000) > robot.brain.data.money_timer
       robot.brain.data.money_timer = t - 1
