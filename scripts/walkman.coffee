@@ -29,9 +29,15 @@ module.exports = (robot) ->
     if req.body.api_key == process.env.MUSIC_AUTH_TOKEN
       song = req.body.song
       if song
-        robot.messageRoom req.body.room_id || process.env.KEGBOT_ROOM_ID, ":musical_note: #{song.title} by #{song.artist}"
+        if req.body.room_id
+          robot.messageRoom req.body.room_id, ":musical_note: #{song.title} by #{song.artist}"
+        else
+          robot.messageRoom process.env.KEGBOT_ROOM_ID, ":musical_note: #{song.title} by #{song.artist}"
       else
-        robot.messageRoom req.body.room_id || process.env.KEGBOT_ROOM_ID, ":speak_no_evil: No song could be played"
+        if req.body.room_id
+          robot.messageRoom req.body.room_id, ":speak_no_evil: No song could be played"
+        else
+          robot.messageRoom process.env.KEGBOT_ROOM_ID, ":speak_no_evil: No song could be played"
 
       res.writeHead 204, { "Content-Length": 0 }
     else
