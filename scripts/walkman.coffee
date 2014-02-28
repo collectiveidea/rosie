@@ -3,6 +3,7 @@
 #   /music play - Plays music
 #   /music stop - Stops the beats
 #   /music next - Plays the next song
+#   /music pause - Toggles pausing the current song
 #   /music current - Returns the song currently playing
 #   /music queue - Returns next 5 songs in the queue
 #   /music like - Tells Walkman to play more songs like the current song
@@ -59,6 +60,14 @@ module.exports = (robot) ->
   robot.respond /music stop/i, (message) ->
     apiRequest message, "/player/stop", "post", {}, (err, res, body) ->
       message.send(":mute: Stopping the beats")
+
+  robot.respond /music pause/i, (message) ->
+    apiRequest message, "/player/pause", "post", {}, (err, res, body) ->
+      pause_message = JSON.parse(body)["message"]
+      if pause_message == "Paused"
+        message.send(":mute: Taking five")
+      else
+        message.send(":musical_note: Annnd we're back!")
 
   robot.respond /music (next|skip)$/i, (message) ->
     params = { count: 1 }
