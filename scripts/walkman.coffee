@@ -106,7 +106,11 @@ module.exports = (robot) ->
       songs = JSON.parse(body)["songs"]
       if songs.length > 0
         response = songs.map (song) ->
-          "#{song.artist} - #{song.title}"
+          "#{song.artist} - #{song.title}" +
+          if song.current_song
+            " (Playing)"
+          else
+            ""
         message.send(response.join("\n"))
       else
         message.send(":speak_no_evil: No more music is queued")
