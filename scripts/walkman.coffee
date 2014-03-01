@@ -61,13 +61,19 @@ module.exports = (robot) ->
     apiRequest message, "/player/stop", "post", {}, (err, res, body) ->
       message.send(":mute: Stopping the beats")
 
-  robot.respond /music pause/i, (message) ->
+  robot.respond /music (pause|unpause)$/i, (message) ->
     apiRequest message, "/player/pause", "post", {}, (err, res, body) ->
       pause_message = JSON.parse(body)["message"]
       if pause_message == "Paused"
-        message.send(":mute: Taking five")
+        message.send(":hand: Taking five")
+      else if pause_message == "Playing"
+        songs = JSON.parse(body)["songs"]
+        if songs.length > 0
+          message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
+        else
+          message.send(":musical_note: Annnd we're back!")
       else
-        message.send(":musical_note: Annnd we're back!")
+        message.send(":speak_no_evil: #{pause_message}")
 
   robot.respond /music (next|skip)$/i, (message) ->
     params = { count: 1 }
