@@ -36,9 +36,9 @@ module.exports = (robot) ->
           robot.messageRoom process.env.KEGBOT_ROOM_ID, ":musical_note: #{song.title} by #{song.artist}"
       else
         if req.body.room_id
-          robot.messageRoom req.body.room_id, ":speak_no_evil: No song could be played"
+          robot.messageRoom req.body.room_id, ":hear_no_evil: No song could be played"
         else
-          robot.messageRoom process.env.KEGBOT_ROOM_ID, ":speak_no_evil: No song could be played"
+          robot.messageRoom process.env.KEGBOT_ROOM_ID, ":hear_no_evil: No song could be played"
 
       res.writeHead 204, { "Content-Length": 0 }
     else
@@ -55,7 +55,7 @@ module.exports = (robot) ->
       if songs.length > 0
         message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
       else
-        message.send(":speak_no_evil: No music is queued")
+        message.send(":hear_no_evil: No music is queued")
 
   robot.respond /music stop/i, (message) ->
     apiRequest message, "/player/stop", "post", {}, (err, res, body) ->
@@ -82,7 +82,7 @@ module.exports = (robot) ->
       if songs.length > 0
         message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
       else
-        message.send(":speak_no_evil: No more music is queued")
+        message.send(":hear_no_evil: No more music is queued")
 
   robot.respond /music skip (\d+)/i, (message) ->
     params = { count: message.match[1] }
@@ -91,7 +91,7 @@ module.exports = (robot) ->
       if songs.length > 0
         message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
       else
-        message.send(":speak_no_evil: No more music is queued")
+        message.send(":hear_no_evil: No more music is queued")
 
   robot.respond /music current/i, (message) ->
     apiRequest message, "/player/current_song", "get", {}, (err, res, body) ->
@@ -99,7 +99,7 @@ module.exports = (robot) ->
       if songs.length > 0
         message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
       else
-        message.send(":speak_no_evil: No music is playing")
+        message.send(":hear_no_evil: No music is playing")
 
   robot.respond /music queue/i, (message) ->
     apiRequest message, "/queue", "get", {}, (err, res, body) ->
@@ -113,7 +113,7 @@ module.exports = (robot) ->
             ""
         message.send(response.join("\n"))
       else
-        message.send(":speak_no_evil: No more music is queued")
+        message.send(":hear_no_evil: No more music is queued")
 
   robot.respond /music like/i, (message) ->
     apiRequest message, "/songs/like", "post", {}, (err, res, body) ->
@@ -140,7 +140,7 @@ module.exports = (robot) ->
       else if res.statusCode == 200
         message.send(":cloud: I don't know those beats. Queueing from The Cloud!")
       else
-        message.send(":speak_no_evil: I couldn't queue up any songs for that artist")
+        message.send(":hear_no_evil: I couldn't queue up any songs for that artist")
 
   robot.respond /music play (.*) by (.*)/i, (message) ->
     return if message.match[1].search(/artist/) != -1
@@ -151,7 +151,7 @@ module.exports = (robot) ->
       if songs.length > 0
         message.send(":musical_note: #{songs[0].title} by #{songs[0].artist}")
       else
-        message.send(":speak_no_evil: I couldn't queue up that song")
+        message.send(":hear_no_evil: I couldn't queue up that song")
 
   robot.respond /music radio artist (.*)/i, (message) ->
     params = { type: "artist-radio", artist: message.match[1], room_id: message.message.room }
@@ -162,7 +162,7 @@ module.exports = (robot) ->
       else if res.statusCode == 200
         message.send(":cloud: I don't know those beats. Queueing from The Cloud!")
       else
-        message.send(":speak_no_evil: I couldn't queue up any music like that artist")
+        message.send(":hear_no_evil: I couldn't queue up any music like that artist")
 
   robot.respond /music output (.*)/i, (message) ->
     params = { audio_output: message.match[1] }
