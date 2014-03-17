@@ -27,7 +27,7 @@ apiRequest = (message, path, action, options, callback) ->
 
 module.exports = (robot) ->
   robot.router.post "/music", (req, res) ->
-    if req.body.api_key == process.env.MUSIC_AUTH_TOKEN
+    if req.body.auth_token == process.env.MUSIC_AUTH_TOKEN
       song = req.body.song
       if song
         if req.body.room_id
