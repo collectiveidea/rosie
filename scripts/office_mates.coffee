@@ -18,3 +18,9 @@ module.exports = (robot) ->
     if !robot.brain.data.country_timer? || (t - 300000) > robot.brain.data.country_timer
       robot.brain.data.country_timer = t - 1
       msg.send "http://farm3.staticflickr.com/2760/4444147325_a95c543463_n.jpg"
+
+  robot.hear /\b(ladies man|hey ladies)\b/i, (msg) ->
+    t = new Date
+    if !robot.brain.data.ladies_timer? || (t - 300000) > robot.brain.data.ladies_timer
+      robot.brain.data.ladies_timer = t - 1
+      msg.send "https://collectiveidea.campfirenow.com/room/109379/uploads/5708742/ladies_man_small.png"
