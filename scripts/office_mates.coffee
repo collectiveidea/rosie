@@ -24,3 +24,21 @@ module.exports = (robot) ->
     if !robot.brain.data.ladies_timer? || (t - 300000) > robot.brain.data.ladies_timer
       robot.brain.data.ladies_timer = t - 1
       msg.send "https://collectiveidea.campfirenow.com/room/109379/uploads/5708742/ladies_man_small.png"
+
+  robot.hear /\b(gosling|hey girl)\b/i, (msg) ->
+    t = new Date
+    if !robot.brain.data.gosling_timer? || (t - 300000) > robot.brain.data.gosling_timer
+      robot.brain.data.gosling_timer = t - 1
+      msg.send "http://imgur.com/PXK1lza"
+
+  robot.hear /\b(lumberjack|axe|flannel)\b/i, (msg) ->
+    t = new Date
+    if !robot.brain.data.lumberjack_timer? || (t - 300000) > robot.brain.data.lumberjack_timer
+      robot.brain.data.lumberjack_timer = t - 1
+      msg.send "http://imgur.com/yDXC3Xt"
+
+  robot.hear /\b(orly|oh really)\b/i, (msg) ->
+    t = new Date
+    if !robot.brain.data.orly_timer? || (t - 300000) > robot.brain.data.orly_timer
+      robot.brain.data.orly_timer = t - 1
+      msg.send "http://imgur.com/1yn3xVc"
