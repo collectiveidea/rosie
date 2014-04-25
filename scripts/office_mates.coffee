@@ -44,7 +44,11 @@ module.exports = (robot) ->
       msg.send "http://imgur.com/1yn3xVc.jpg"
 
   robot.hear /\b(sombrero)\b/i, (msg) ->
+    images = [
+      "http://25.media.tumblr.com/tumblr_m1ikw0vTEY1qh5d8ko1_500.jpg",
+      "http://s.mlkshk.com/r/YMI4.gif"
+    ]
     t = new Date
     if !robot.brain.data.sombrero_timer? || (t - 300000) > robot.brain.data.sombrero_timer
       robot.brain.data.sombrero_timer = t - 1
-      msg.send "http://25.media.tumblr.com/tumblr_m1ikw0vTEY1qh5d8ko1_500.jpg"
+      msg.send(msg.random(images))
