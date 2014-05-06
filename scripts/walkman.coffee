@@ -49,6 +49,15 @@ module.exports = (robot) ->
   robot.respond /music status/i, (message) ->
     message.send(":information_source: Walkman is pointed to #{URL}")
 
+  robot.respond /music server (.*)/i, (message) ->
+    url = message.match[1]
+
+    if url.length > 0
+      URL = url
+      message.send(":information_source: Walkman is now pointed to #{URL}")
+    else
+      message.send(":information_source: Walkman is currently pointed to #{URL}")
+
   robot.respond /music play$/i, (message) ->
     apiRequest message, "/player/play", "post", {}, (err, res, body) ->
       songs = JSON.parse(body)["songs"]
