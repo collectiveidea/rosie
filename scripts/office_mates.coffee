@@ -7,6 +7,12 @@ module.exports = (robot) ->
       robot.brain.data.fox_timer = t - 1
       msg.send "http://i.imgur.com/PPBt41H.gif"
 
+  robot.hear /\bthe point\b/i, (msg) ->
+    t = new Date
+    if !robot.brain.data.fox_timer? || (t - 300000) > robot.brain.data.fox_timer
+      robot.brain.data.fox_timer = t - 1
+      msg.send "http://i.imgur.com/h3rjXpQ.gif"
+
   robot.hear /\b(silver|fox)\b/i, (msg) ->
     t = new Date
     if !robot.brain.data.fox_timer? || (t - 300000) > robot.brain.data.fox_timer
