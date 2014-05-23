@@ -1,6 +1,12 @@
 # silver fox hound
 #
 module.exports = (robot) ->
+  robot.hear /\blucky\b/i, (msg) ->
+    t = new Date
+    if !robot.brain.data.fox_timer? || (t - 300000) > robot.brain.data.fox_timer
+      robot.brain.data.fox_timer = t - 1
+      msg.send "http://i.imgur.com/PPBt41H.gif"
+
   robot.hear /\b(silver|fox)\b/i, (msg) ->
     t = new Date
     if !robot.brain.data.fox_timer? || (t - 300000) > robot.brain.data.fox_timer
