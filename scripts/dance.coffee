@@ -21,7 +21,8 @@ images = [
   "http://www.reactiongifs.com/wp-content/uploads/2012/09/horsing_around.gif",
   "http://24.media.tumblr.com/c9c393d9b69d5d60bcc3b15c0f5612bd/tumblr_mmgppxQ5BF1qdlh1io1_250.gif",
   "http://assets0.ordienetworks.com/images/GifGuide/dancing/sunny2.gif",
-  "http://www.reactiongifs.com/wp-content/uploads/2013/11/blues-brothers.gif"
+  "http://www.reactiongifs.com/wp-content/uploads/2013/11/blues-brothers.gif",
+  "http://s3.amazonaws.com/rapgenius/ninja-rap.gif"
 ]
 
 # Now is the time on sprockets when we dance!
