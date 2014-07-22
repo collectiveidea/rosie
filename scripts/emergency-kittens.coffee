@@ -1,4 +1,4 @@
 module.exports = (robot) ->
-  robot.hear /\bkitten\b/i, (msg) ->
+  robot.hear /\bkittens?\b/i, (msg) ->
     msg.http("http://emergencykitten.com/img/random").get() (err, res, body) ->
-      msg.send(res.getHeader('Location') + "#.png")
+      msg.send(res.headers.location + "#.png")
