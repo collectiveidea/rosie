@@ -10,8 +10,8 @@
   }],
 
   "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
+    "node": ">= 0.8.x",
+    "npm": ">= 1.1.x"
   },
 
   "repository" : {
@@ -22,15 +22,19 @@
   "dependencies": {
     "hubot": ">= 2.4.8",
     "hubot-scripts": ">= 2.4.2",
-    "redis":"0.7.1",
-    "optparse": "1.0.3",
-    "sprintf":"0.1.1",
-    "path":"0.4.9",
-    "cron":"1.0.1",
-    "time":"0.8.4",
+    "redis": "0.7.1",
+    "optparse": "1.0.4",
+    "sprintf": "0.1.1",
+    "path": "0.4.9",
+    "cron": "1.0.1",
+    "time": "0.8.4",
     "pg": "~0.10.2",
-    "ntwitter" : "https://github.com/sebhildebrandt/ntwitter/tarball/master",
+    "ntwitter": "https://github.com/sebhildebrandt/ntwitter/tarball/master",
     "nesting": "0.1.0",
-    "crypto-js": "~3.1.2"
+    "crypto-js": "~3.1.2",
+    "coffee-script": "1.6.3",
+    "scoped-http-client": "0.9.8",
+    "log": "1.4.0",
+    "express": "3.3.4"
   }
 }
