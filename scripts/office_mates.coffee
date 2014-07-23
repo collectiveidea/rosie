@@ -3,14 +3,14 @@
 module.exports = (robot) ->
   robot.hear /\blucky\b/i, (msg) ->
     t = new Date
-    if !robot.brain.data.fox_timer? || (t - 300000) > robot.brain.data.fox_timer
-      robot.brain.data.fox_timer = t - 1
+    if !robot.brain.data.lucky_timer? || (t - 300000) > robot.brain.data.lucky_timer
+      robot.brain.data.lucky_timer = t - 1
       msg.send "http://i.imgur.com/3Z5FjvK.gif"
 
   robot.hear /\bthe point\b/i, (msg) ->
     t = new Date
-    if !robot.brain.data.fox_timer? || (t - 300000) > robot.brain.data.fox_timer
-      robot.brain.data.fox_timer = t - 1
+    if !robot.brain.data.the_point_timer? || (t - 300000) > robot.brain.data.the_point_timer
+      robot.brain.data.the_point_timer = t - 1
       msg.send "http://i.imgur.com/QgIoRSJ.gif"
 
   robot.hear /\b(silver|fox)\b/i, (msg) ->
