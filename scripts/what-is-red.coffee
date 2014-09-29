@@ -17,22 +17,22 @@
 cronJob = require("cron").CronJob
 
 module.exports = (robot) ->
-  robot.respond /(what projects are red|red|borked|blame)$/i, -> postWhatIsRed(robot)
+  robot.respond /(what projects are red|red|borked|blame)$/i, ->(msg) postWhatIsRed(robot, msg)
 
-  new cronJob
-    cronTime: "20 9 * * 1-5" # M-F 9:20AM
-    onTick: -> postWhatIsRed(robot)
-    onComplete: null
-    start: true
-    timeZone: "America/New_York"
+  # new cronJob
+  #   cronTime: "20 9 * * 1-5" # M-F 9:20AM
+  #   onTick: -> postWhatIsRed(robot)
+  #   onComplete: null
+  #   start: true
+  #   timeZone: "America/New_York"
 
-postWhatIsRed = (robot) ->
+postWhatIsRed = (robot, msg) ->
   robot.http("http://buildlight.collectiveidea.com/what-is-red.json").get() (err, res, body) ->
     redProjects = JSON.parse(body)
     if redProjects?.length > 0
       names = redProjects.map (project) -> project.username + "/" + project.project_name
-      msg = "The following projects are failing:\n"
-      msg += names.reduce (x, y) -> x + "\n" + y
-      robot.messageRoom process.env.PRIVATE_ROOM_ID, msg
+      note = "The following projects are failing:\n"
+      note += names.reduce (x, y) -> x + "\n" + y
+      msg.send note
     else
-      robot.messageRoom process.env.PRIVATE_ROOM_ID, "All projects are green :tada:"
+      msg.send "All projects are green :tada:"
