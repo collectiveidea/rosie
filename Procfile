@@ -1,1 +1,1 @@
-web: hubot -a campfire -n Rosie -l
+web: hubot -a slack -n Rosie -l
