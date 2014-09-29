@@ -1,43 +1,50 @@
-# A way to interact with the Google Images API.
+# Description:
+#   A way to interact with the Google Images API.
 #
-# image me <query>    - The Original. Queries Google Images for <query> and
-#                       returns a random top result.
-# animate me <query>  - The same thing as `image me`, except adds a few
-#                       parameters to try to return an animated GIF instead.
-# mustache me <url>   - Adds a mustache to the specified URL.
-# mustache me <query> - Searches Google Images for the specified query and
-#                       mustaches it.
+# Commands:
+#   hubot image me <query> - The Original. Queries Google Images for <query> and returns a random top result.
+#   hubot animate me <query> - The same thing as `image me`, except adds a few parameters to try to return an animated GIF instead.
+#   hubot mustache me <url> - Adds a mustache to the specified URL.
+#   hubot mustache me <query> - Searches Google Images for the specified query and mustaches it.
+
 module.exports = (robot) ->
   robot.respond /(image|img)( me)? (.*)/i, (msg) ->
     imageMe msg, msg.match[3], (url) ->
       msg.send url
 
   robot.respond /animate( me)? (.*)/i, (msg) ->
-    animateMe msg, msg.match[2], (url) ->
+    imageMe msg, msg.match[2], true, (url) ->
       msg.send url
 
-processResults = (msg, query, body, cb, search_function, attempt) ->
-  images = JSON.parse(body).responseData?.results
+  robot.respond /(?:mo?u)?sta(?:s|c)he?(?: me)? (.*)/i, (msg) ->
+    type = Math.floor(Math.random() * 6)
+    mustachify = "http://mustachify.me/#{type}?src="
+    imagery = msg.match[1]
 
-  if images?.length > 0
-    image = msg.random images
-    cb "#{image.unescapedUrl}#.png"
-  else if attempt == 5
-    cb "I failed to get an image due to rate limiting."
-  else if attempt <= 5
-    setTimeout(
-      () -> search_function(msg, query, cb, attempt + 1),
-      (attempt * 1000 + (Math.random() * 1000)) + 2000
-    )
+    if imagery.match /^https?:\/\//i
+      msg.send "#{mustachify}#{encodeURIComponent imagery}"
+    else
+      imageMe msg, imagery, false, true, (url) ->
+        msg.send "#{mustachify}#{encodeURIComponent url}"
 
-imageMe = (msg, query, cb, attempt = 1) ->
+imageMe = (msg, query, animated, faces, cb) ->
+  cb = animated if typeof animated == 'function'
+  cb = faces if typeof faces == 'function'
+  q = v: '1.0', rsz: '8', q: query, safe: 'active'
+  q.imgtype = 'animated' if typeof animated is 'boolean' and animated is true
+  q.imgtype = 'face' if typeof faces is 'boolean' and faces is true
   msg.http('http://ajax.googleapis.com/ajax/services/search/images')
-    .query(v: "1.0", rsz: '8', q: query)
+    .query(q)
     .get() (err, res, body) ->
-      processResults(msg, query, body, cb, imageMe, attempt)
+      images = JSON.parse(body)
+      images = images.responseData?.results
+      if images?.length > 0
+        image = msg.random images
+        cb ensureImageExtension image.unescapedUrl
 
-animateMe = (msg, query, cb, attempt = 1) ->
-  msg.http('http://ajax.googleapis.com/ajax/services/search/images')
-    .query(v: "1.0", rsz: "8", imgtype: "animated", q: query)
-    .get() (err, res, body) ->
-      processResults(msg, query, body, cb, animateMe, attempt)
+ensureImageExtension = (url) ->
+  ext = url.split('.').pop()
+  if /(png|jpe?g|gif)/i.test(ext)
+    url
+  else
+    "#{url}#.png"
