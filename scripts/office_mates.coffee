@@ -64,3 +64,6 @@ module.exports = (robot) ->
     if !robot.brain.data.sombrero_timer? || (t - 300000) > robot.brain.data.sombrero_timer
       robot.brain.data.sombrero_timer = t - 1
       msg.send(msg.random(images))
+
+  robot.hear /\b(donut|doughnut)\b/i, (msg) ->
+    msg.send "http://f.cl.ly/items/2V0q343T420A0F2d1S00/tim-bugai.png"
