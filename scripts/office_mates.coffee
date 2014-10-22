@@ -66,4 +66,7 @@ module.exports = (robot) ->
       msg.send(msg.random(images))
 
   robot.hear /\b(donut|doughnut)\b/i, (msg) ->
-    msg.send "http://f.cl.ly/items/2V0q343T420A0F2d1S00/tim-bugai.png"
+    t = new Date
+    if !robot.brain.data.donut_timer? || (t - 300000) > robot.brain.data.donut_timer
+      robot.brain.data.donut_timer = t - 1
+      msg.send "http://f.cl.ly/items/2V0q343T420A0F2d1S00/tim-bugai.png"
