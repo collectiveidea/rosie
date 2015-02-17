@@ -4,4 +4,7 @@ images = [
 
 module.exports = (robot) ->
   robot.hear /(?:^|\s)hot\s?dogs?(?:\s|$)/i, (msg) ->
-    msg.send(msg.random(images))
+    t = new Date
+    if !robot.brain.data.hot_dog_timer? || (t - 300000) > robot.brain.data.hot_dog_timer
+      robot.brain.data.hot_dog_timer = t - 1
+      msg.send(msg.random(images))
