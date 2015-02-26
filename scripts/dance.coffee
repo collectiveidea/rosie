@@ -30,5 +30,5 @@ images = [
 
 # Now is the time on sprockets when we dance!
 module.exports = (robot) ->
-  robot.hear /dance/i, (msg) ->
+  robot.hear /\bdance\b/i, (msg) ->
     msg.send(msg.random(images))
