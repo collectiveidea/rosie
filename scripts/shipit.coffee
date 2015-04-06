@@ -34,7 +34,8 @@ squirrels = [
   "http://dl.dropbox.com/u/602885/github/squirrelmobster.jpeg",
   "http://f.cl.ly/items/0S1M2d1h0I132S082A05/flying-squirrel.gif",
   "http://i.imgur.com/DEJF1g2.jpg",
-  "http://i.imgur.com/h3N15C2.gif"
+  "http://i.imgur.com/h3N15C2.gif",
+  "http://media.tumblr.com/34507ef6528f17f3892e34153bfe35b0/tumblr_mlqgk23xQb1rjm9fto1_400.gif"
 ]
 
 module.exports = (robot) ->
