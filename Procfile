@@ -1,1 +1,1 @@
-web: bin/hubot -a slack -n Rosie -l "\\"
+web: bin/hubot -a slack -l "\\"

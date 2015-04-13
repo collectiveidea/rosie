@@ -1,32 +1,34 @@
 {
-  "name":        "hosted-hubot",
+  "name":        "rosie",
   "version":     "0.1.0",
+  "private":     true,
   "author":      "GitHub Inc.",
-  "keywords":    "github hubot campfire bot",
   "description": "A simple helpful Robot for your Company",
-  "licenses":     [{
-    "type":       "MIT",
-    "url":        "http://github.com/github/hubot/raw/master/LICENSE"
-  }],
 
   "engines": {
-    "node": ">= 0.8.x",
-    "npm": ">= 1.1.x"
-  },
-
-  "repository" : {
-    "type" : "git",
-    "url" : "http://github.com/github/hubot.git"
+    "node": "0.10.x"
   },
 
   "dependencies": {
-    "hubot": ">= 2.6.0 < 3.0.0",
+    "hubot": "^2.12.0",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
-    "hubot-slack": "^2.2.0",
+    "hubot-diagnostics": "0.0.1",
+    "hubot-google-images": "^0.1.4",
+    "hubot-google-translate": "^0.1.0",
+    "hubot-help": "^0.1.1",
+    "hubot-heroku-keepalive": "0.0.4",
+    "hubot-maps": "0.0.2",
+    "hubot-pugme": "^0.1.0",
+    "hubot-rules": "^0.1.0",
+    "hubot-scripts": "^2.5.16",
+    "hubot-shipit": "^0.1.2",
+    "hubot-slack": "^3.3.0",
+    "hubot-youtube": "^0.1.2",
+
     "coffee-script": "1.6.3",
     "cron": "1.0.1",
     "crypto-js": "~3.1.2",
-    "express": "3.3.4",
+    "express": "3.18.1",
     "log": "1.4.0",
     "nesting": "0.1.0",
     "ntwitter": "https://github.com/sebhildebrandt/ntwitter/tarball/master",
@@ -34,7 +36,7 @@
     "path": "0.4.9",
     "pg": "~0.10.2",
     "redis": "0.7.1",
-    "scoped-http-client": "0.9.8",
+    "scoped-http-client": "0.10.3",
     "sprintf": "0.1.1",
     "time": "0.8.4"
   }
