@@ -11,7 +11,6 @@
 
   "dependencies": {
     "hubot": "^2.12.0",
-    "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "hubot-diagnostics": "0.0.1",
     "hubot-google-images": "^0.1.4",
     "hubot-google-translate": "^0.1.0",
@@ -21,7 +20,6 @@
     "hubot-pugme": "^0.1.0",
     "hubot-rules": "^0.1.0",
     "hubot-scripts": "^2.5.16",
-    "hubot-shipit": "^0.1.2",
     "hubot-slack": "^3.3.0",
     "hubot-youtube": "^0.1.2",
 
