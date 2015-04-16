@@ -15,8 +15,16 @@
 
 module.exports = (robot) ->
   robot.respond /cowsay( me)? (.*)/i, (msg) ->
-    msg
-      .http("http://cowsay.morecode.org/say")
-      .query(format: 'text', message: msg.match[2])
-      .get() (err, res, body) ->
-        msg.send "```\n#{body}\n```"
+    if msg.match[2].match /^fortune$/i
+      msg.http('http://www.fortunefortoday.com/getfortuneonly.php')
+        .get() (err, res, body) ->
+          cowsay(msg, body)
+    else
+      cowsay(msg, msg.match[2])
+
+cowsay = (msg, text) ->
+  msg
+    .http("http://cowsay.morecode.org/say")
+    .query(format: 'text', message: text)
+    .get() (err, res, body) ->
+      msg.send "```\n#{body}\n```"
