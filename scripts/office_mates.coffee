@@ -7,12 +7,6 @@ module.exports = (robot) ->
       robot.brain.data.lucky_timer = t - 1
       msg.send "http://i.imgur.com/3Z5FjvK.gif"
 
-  robot.hear /\bthe point\b/i, (msg) ->
-    t = new Date
-    if !robot.brain.data.the_point_timer? || (t - 300000) > robot.brain.data.the_point_timer
-      robot.brain.data.the_point_timer = t - 1
-      msg.send "http://i.imgur.com/QgIoRSJ.gif"
-
   robot.hear /\b(silver|fox)\b/i, (msg) ->
     t = new Date
     if !robot.brain.data.fox_timer? || (t - 300000) > robot.brain.data.fox_timer
@@ -35,7 +29,7 @@ module.exports = (robot) ->
     t = new Date
     if !robot.brain.data.ladies_timer? || (t - 300000) > robot.brain.data.ladies_timer
       robot.brain.data.ladies_timer = t - 1
-      msg.send "https://collectiveidea.campfirenow.com/room/109379/uploads/5708742/ladies_man_small.png"
+      msg.send "https://files.slack.com/files-pri/T024LL7PK-F04GVFHG2/ladies_man_small.png"
 
   robot.hear /\b(gosling|hey girl)\b/i, (msg) ->
     t = new Date
