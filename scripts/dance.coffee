@@ -25,7 +25,8 @@ images = [
   "http://s3.amazonaws.com/rapgenius/ninja-rap.gif",
   "https://31.media.tumblr.com/1d98f053a16daafab702d1fb2cef42a0/tumblr_myfdzsR1bR1sh3xeyo1_500.gif",
   "https://38.media.tumblr.com/bfad620ce86dbf6d8fad0f6c79f4ef4d/tumblr_miqqpzPVQP1rw1he8o1_500.gif",
-  "http://33.media.tumblr.com/ba0aae41226ccda0c1cf4d2d8cb802f6/tumblr_n9iq7sUBNf1sodwato1_500.gif"
+  "http://33.media.tumblr.com/ba0aae41226ccda0c1cf4d2d8cb802f6/tumblr_n9iq7sUBNf1sodwato1_500.gif",
+  "http://i.imgur.com/eJa3pxn.gif"
 ]
 
 # Now is the time on sprockets when we dance!
