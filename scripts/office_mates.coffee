@@ -64,3 +64,9 @@ module.exports = (robot) ->
     if !robot.brain.data.donut_timer? || (t - 300000) > robot.brain.data.donut_timer
       robot.brain.data.donut_timer = t - 1
       msg.send "http://f.cl.ly/items/2V0q343T420A0F2d1S00/tim-bugai.png"
+
+  robot.hear /\b(magic)\b/i, (msg) ->
+    t = new Date
+    if !robot.brain.data.magic_timer? || (t - 300000) > robot.brain.data.magic_timer
+      robot.brain.data.magic_timer = t - 1
+      msg.send "http://i.kinja-img.com/gawker-media/image/upload/s--JUMxC_o1--/1462432556329353359.gif"
