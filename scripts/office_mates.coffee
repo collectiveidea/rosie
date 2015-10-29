@@ -70,3 +70,9 @@ module.exports = (robot) ->
     if !robot.brain.data.magic_timer? || (t - 300000) > robot.brain.data.magic_timer
       robot.brain.data.magic_timer = t - 1
       msg.send "http://i.kinja-img.com/gawker-media/image/upload/s--JUMxC_o1--/1462432556329353359.gif"
+
+  robot.hear /\b(modern)\b/i, (msg) ->
+    t = new Date
+    if !robot.brain.data.modern_timer? || (t - 300000) > robot.brain.data.modern_timer
+      robot.brain.data.modern_timer = t - 1
+      msg.send "https://collectiveidea.slack.com/files/victor/F0DEUDU68/pasted_image_at_2015_10_29_02_37_pm.png"
