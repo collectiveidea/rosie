@@ -7,12 +7,6 @@ module.exports = (robot) ->
       robot.brain.data.lucky_timer = t - 1
       msg.send "http://i.imgur.com/3Z5FjvK.gif"
 
-  robot.hear /\b(vices|smoking|pay day|suit|vp)\b/i, (msg) ->
-    t = new Date
-    if !robot.brain.data.money_timer? || (t - 300000) > robot.brain.data.money_timer
-      robot.brain.data.money_timer = t - 1
-      msg.send "http://i.imgur.com/rGipnfq.gif"
-
   robot.hear /\b(country|western|straw hat|cowboy)\b/i, (msg) ->
     t = new Date
     if !robot.brain.data.country_timer? || (t - 300000) > robot.brain.data.country_timer
@@ -24,12 +18,6 @@ module.exports = (robot) ->
     if !robot.brain.data.ladies_timer? || (t - 300000) > robot.brain.data.ladies_timer
       robot.brain.data.ladies_timer = t - 1
       msg.send "https://files.slack.com/files-pri/T024LL7PK-F04GVFHG2/ladies_man_small.png"
-
-  robot.hear /\b(gosling|hey girl)\b/i, (msg) ->
-    t = new Date
-    if !robot.brain.data.gosling_timer? || (t - 300000) > robot.brain.data.gosling_timer
-      robot.brain.data.gosling_timer = t - 1
-      msg.send "http://imgur.com/PXK1lza.jpg"
 
   robot.hear /\b(lumberjack|axe|flannel)\b/i, (msg) ->
     t = new Date
