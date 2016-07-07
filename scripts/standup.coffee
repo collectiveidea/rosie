@@ -24,7 +24,7 @@ module.exports = (robot) ->
       robot.messageRoom process.env.STANDUP_ROOM_ID, process.env.STANDUP_HANGOUT_URL
 
     new cronJob
-      cronTime: (process.env.STANDUP_CRON_TIME || '30 9 * * 1-5') # M-F 9:30AM
+      cronTime: (process.env.STANDUP_CRON_TIME || '29 9 * * 1-5') # M-F 9:29AM
       onTick: ->
         robot.messageRoom process.env.STANDUP_ROOM_ID, "STANDUP: #{process.env.STANDUP_HANGOUT_URL}"
       onComplete: null
