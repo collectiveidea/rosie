@@ -28,7 +28,8 @@ module.exports = (robot) ->
   #   timeZone: "America/New_York"
 
 postWhatIsRed = (robot, msg) ->
-  robot.http("http://buildlight.collectiveidea.com/what-is-red.json").get() (err, res, body) ->
+  device = process.env.BUILDLIGHT_DEVICE_ID
+  robot.http("https://buildlight.collectiveidea.com/api/device/" + device + "/red.json").get() (err, res, body) ->
     redProjects = JSON.parse(body)
     if redProjects?.length > 0
       names = redProjects.map (project) -> project.username + "/" + project.project_name
