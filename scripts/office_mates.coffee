@@ -23,7 +23,7 @@ module.exports = (robot) ->
     t = new Date
     if !robot.brain.data.lumberjack_timer? || (t - 300000) > robot.brain.data.lumberjack_timer
       robot.brain.data.lumberjack_timer = t - 1
-      msg.send "http://imgur.com/yDXC3Xt.jpg"
+      msg.send "https://files.slack.com/files-pri/T024LL7PK-F3AQ3HCLD/slack_for_ios_upload.jpg"
 
   robot.hear /\b(orly|oh really)\b/i, (msg) ->
     t = new Date
