@@ -31,7 +31,7 @@
     "nesting": "latest",
     "optparse": "latest",
     "path": "latest",
-    "pg": "^2.11.1",
+    "pg": "^0.10.2",
     "redis": "latest",
     "scoped-http-client": "latest",
     "sprintf": "latest",
