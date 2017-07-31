@@ -26,7 +26,6 @@
   "pg-brain.coffee",
   "ping.coffee",
   "talkative.coffee",
-  "tweet.coffee",
   "wat.coffee",
   "wunderground.coffee"
 ]
