@@ -6,36 +6,35 @@
   "description": "A simple helpful Robot for your Company",
 
   "engines": {
-    "node": "0.10.x"
+    "node": "8.2.1"
   },
 
   "dependencies": {
-    "hubot": "^2.12.0",
-    "hubot-diagnostics": "0.0.1",
-    "hubot-google-images": "^0.1.4",
-    "hubot-google-translate": "^0.1.0",
-    "hubot-help": "^0.1.1",
-    "hubot-heroku-keepalive": "0.0.4",
-    "hubot-maps": "0.0.2",
-    "hubot-pugme": "^0.1.0",
-    "hubot-rules": "^0.1.0",
-    "hubot-scripts": "^2.5.16",
-    "hubot-slack": "^3.3.0",
-    "hubot-youtube": "^0.1.2",
+    "hubot": "latest",
+    "hubot-diagnostics": "latest",
+    "hubot-google-images": "latest",
+    "hubot-google-translate": "latest",
+    "hubot-help": "latest",
+    "hubot-heroku-keepalive": "latest",
+    "hubot-maps": "latest",
+    "hubot-pugme": "latest",
+    "hubot-rules": "latest",
+    "hubot-scripts": "latest",
+    "hubot-slack": "latest",
+    "hubot-youtube": "latest",
 
-    "coffee-script": "1.6.3",
-    "cron": "1.0.1",
-    "crypto-js": "~3.1.2",
-    "express": "3.18.1",
-    "log": "1.4.0",
-    "nesting": "0.1.0",
-    "ntwitter": "https://github.com/sebhildebrandt/ntwitter/tarball/master",
-    "optparse": "1.0.4",
-    "path": "0.4.9",
-    "pg": "~0.10.2",
-    "redis": "0.7.1",
-    "scoped-http-client": "0.10.3",
-    "sprintf": "0.1.1",
-    "time": "0.8.4"
+    "coffee-script": "latest",
+    "cron": "latest",
+    "crypto-js": "latest",
+    "express": "latest",
+    "log": "latest",
+    "nesting": "latest",
+    "optparse": "latest",
+    "path": "latest",
+    "pg": "latest",
+    "redis": "latest",
+    "scoped-http-client": "latest",
+    "sprintf": "latest",
+    "time": "latest"
   }
 }
