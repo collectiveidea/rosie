@@ -6,7 +6,7 @@
   "description": "A simple helpful Robot for your Company",
 
   "engines": {
-    "node": "0.10.x"
+    "node": "6.11.1"
   },
 
   "dependencies": {
@@ -36,6 +36,6 @@
     "redis": "0.7.1",
     "scoped-http-client": "0.10.3",
     "sprintf": "0.1.1",
-    "time": "0.8.4"
+    "time": "0.11.4"
   }
 }
