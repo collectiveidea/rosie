@@ -59,3 +59,9 @@ module.exports = (robot) ->
     if !robot.brain.data.ninja_timer? || (t - 300000) > robot.brain.data.ninja_timer
       robot.brain.data.ninja_timer = t - 1
       msg.send "https://collectiveidea.slack.com/files/p/F6LTKM4RX/ninja_ray.jpg"
+
+  robot.here /\b(looks fine to me)\b/i, (msg) ->
+    t = new Date
+    if !robot.brain.data.looks_fine_timer? || (t - 300000) > robot.brain.data.looks_fine_timer
+      robot.brain.data.looks_fine_timer = t - 1
+      msg.send "https://assets-auto.rbl.ms/353b2f6ae2b6c1a3eba793b396e6f161d832bc9ebc68604b18608416c183cc17"
