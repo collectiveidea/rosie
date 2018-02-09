@@ -25,16 +25,12 @@ hedgehogImages = [
 
 module.exports = (robot) ->
   robot.hear /hedgehog?(?: me)?$/i, (msg) ->
-    msg.send hedgehogMe()
+    msg.send msg.random(hedgehogImages)
 
   robot.hear /hedgehog bomb(?: me)?( \d+)?$/i, (msg) ->
     hedgehogs = msg.match[1] || 5
-    msg.send(hedgehogMe()) for i in [1..hedgehogs]
+    msg.send(msg.random(hedgehogImages)) for i in [1..hedgehogs]
 
-  robot.hear /emergency hedgehog?/i, (msg) ->
+  robot.hear /emergency hedgehogs?/i, (msg) ->
     hedgehogs = msg.match[1] || 5
-    msg.send(hedgehogMe()) for i in [1..hedgehogs]
-
-hedgehogMe = () ->
-  rand = Math.floor(Math.random() * Math.floor(hedgehogImages.length))
-  return hedgehogIMages[rand]
+    msg.send(msg.random(hedgehogImages)) for i in [1..hedgehogs]
