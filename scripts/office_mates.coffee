@@ -7,7 +7,7 @@ module.exports = (robot) ->
       robot.brain.data.lucky_timer = t - 1
       msg.send "http://i.imgur.com/3Z5FjvK.gif"
 
-  robot.hear /\b(country|western|straw hat|cowboy)\b/i, (msg) ->
+  robot.hear /\b(western|straw hat|cowboy)\b/i, (msg) ->
     t = new Date
     if !robot.brain.data.country_timer? || (t - 300000) > robot.brain.data.country_timer
       robot.brain.data.country_timer = t - 1
