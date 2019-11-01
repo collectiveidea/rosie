@@ -32,7 +32,7 @@
     "ntwitter": "https://github.com/sebhildebrandt/ntwitter/tarball/master",
     "optparse": "1.0.4",
     "path": "0.4.9",
-    "pg": "~0.10.2",
+    "pg": "~7.12.1",
     "redis": "0.7.1",
     "scoped-http-client": "0.10.3",
     "sprintf": "0.1.1",
